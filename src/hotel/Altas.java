@@ -47,6 +47,7 @@ public class Altas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Sexo = new javax.swing.ButtonGroup();
         Nombre = new javax.swing.JTextField();
         Telefono = new javax.swing.JTextField();
         Correo = new javax.swing.JTextField();
@@ -55,6 +56,9 @@ public class Altas extends javax.swing.JFrame {
         Fecha = new javax.swing.JTextField();
         Agregar = new javax.swing.JButton();
         Regresar = new javax.swing.JLabel();
+        Masculino = new javax.swing.JRadioButton();
+        Femenino = new javax.swing.JRadioButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -112,6 +116,17 @@ public class Altas extends javax.swing.JFrame {
         });
         getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 140, 80));
 
+        Sexo.add(Masculino);
+        Masculino.setText("Masculino");
+        getContentPane().add(Masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
+
+        Sexo.add(Femenino);
+        Femenino.setText("Femenino");
+        getContentPane().add(Femenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, -1, -1));
+
+        jLabel1.setText("Sexo");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 60, -1));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -139,9 +154,14 @@ public class Altas extends javax.swing.JFrame {
         String correo = Correo.getText();
         String metodop = MetodoP.getText();
         String numh = (String)Habitaciones.getSelectedItem();
+        String sexo = "";
+        if(Masculino.isSelected())
+            sexo = "Masculino";
+        else
+            sexo = "Femenino";
         PreparedStatement ps;
         try{
-            ps = cn.prepareStatement("INSERT INTO customers(Nombre,NumTel,Correo,MetodoP,NumH) VALUES('"+nombre+"','"+numtel+"','"+correo+"','"+metodop+"',"+numh+")");
+            ps = cn.prepareStatement("INSERT INTO customers(Nombre,NumTel,Correo,MetodoP,NumH,Sexo) VALUES('"+nombre+"','"+numtel+"','"+correo+"','"+metodop+"',"+numh+",'"+sexo+"')");
             ps.executeUpdate();
             ps = cn.prepareStatement("UPDATE habitacion SET Cupo=1,FInic='"+date+"' WHERE NumH = "+Habitaciones.getSelectedItem()+"");
             ps.executeUpdate();
@@ -205,10 +225,14 @@ public class Altas extends javax.swing.JFrame {
     private javax.swing.JButton Agregar;
     private javax.swing.JTextField Correo;
     private javax.swing.JTextField Fecha;
+    private javax.swing.JRadioButton Femenino;
     private javax.swing.JComboBox<String> Habitaciones;
+    private javax.swing.JRadioButton Masculino;
     private javax.swing.JTextField MetodoP;
     private javax.swing.JTextField Nombre;
     private javax.swing.JLabel Regresar;
+    private javax.swing.ButtonGroup Sexo;
     private javax.swing.JTextField Telefono;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

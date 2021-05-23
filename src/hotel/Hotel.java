@@ -5,6 +5,8 @@
  */
 package hotel;
 
+import java.awt.Color;
+
 /**
  *
  * @author xjlop
@@ -13,9 +15,6 @@ public class Hotel {
 
     public static void main(String[] args) {
         Login obj = new Login();
-        obj.setSize(300,500);
-        obj.setVisible(true);
-        obj.setResizable(false);
     }
     
 }

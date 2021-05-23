@@ -5,6 +5,8 @@
  */
 package hotel;
 
+import java.awt.Color;
+import java.awt.Image;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.sql.Connection;
@@ -13,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +31,22 @@ public class Login extends javax.swing.JFrame {
     Connection cn = cc.conexion();
     public Login() {
         initComponents();
+        this.dispose();
+        this.setUndecorated(true);
+        this.setBackground(new Color(1.0f,1.0f,1.0f,0f));
+        this.setSize(300,500);
+        this.setVisible(true);
+        this.setResizable(false);
         this.setLocationRelativeTo(null);
+        User.setOpaque(false);
+        User.setBorder(null);
+        User.setForeground(Color.white);
+        Password.setForeground(Color.white);
+        Password.setOpaque(false);
+        Password.setBorder(null);
+        Image l = new ImageIcon(this.getClass().getResource("/Imagenes/BackLogin.png")).getImage();
+        ImageIcon ii = new ImageIcon(l);
+        jLabel1.setIcon(ii);
     }
 
     /**
@@ -43,6 +61,7 @@ public class Login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         User = new javax.swing.JTextField();
         Password = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(300, 500));
@@ -55,7 +74,7 @@ public class Login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 370, 90, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 90, -1));
 
         User.setText("Usuario");
         User.setPreferredSize(new java.awt.Dimension(110, 20));
@@ -64,7 +83,7 @@ public class Login extends javax.swing.JFrame {
                 UserMouseClicked(evt);
             }
         });
-        getContentPane().add(User, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, -1, -1));
+        getContentPane().add(User, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 270, -1, -1));
 
         Password.setText("jPasswordField1");
         Password.setPreferredSize(new java.awt.Dimension(110, 20));
@@ -73,7 +92,8 @@ public class Login extends javax.swing.JFrame {
                 PasswordMouseClicked(evt);
             }
         });
-        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, -1, -1));
+        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 348, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -104,7 +124,7 @@ public class Login extends javax.swing.JFrame {
             }
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Algo fallo en la consulta \n" + e);
-        } catch (Exception ex) {
+        }catch (Exception ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -159,5 +179,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField Password;
     private javax.swing.JTextField User;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
