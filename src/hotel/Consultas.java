@@ -70,6 +70,7 @@ public class Consultas extends javax.swing.JFrame {
         Imagen = new javax.swing.JLabel();
         Reservar = new javax.swing.JButton();
         Regresar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -132,6 +133,9 @@ public class Consultas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, 100, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -243,6 +247,7 @@ public class Consultas extends javax.swing.JFrame {
     private javax.swing.JLabel Regresar;
     private javax.swing.JButton Reservar;
     private javax.swing.JTable Tabla;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

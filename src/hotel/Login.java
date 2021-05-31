@@ -6,6 +6,7 @@
 package hotel;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Image;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -34,7 +35,7 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         this.setUndecorated(true);
         this.setBackground(new Color(1.0f,1.0f,1.0f,0f));
-        this.setSize(300,500);
+        this.setSize(700,500);
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -47,6 +48,8 @@ public class Login extends javax.swing.JFrame {
         Image l = new ImageIcon(this.getClass().getResource("/Imagenes/BackLogin.png")).getImage();
         ImageIcon ii = new ImageIcon(l);
         jLabel1.setIcon(ii);
+        Font font = new Font("SF Pro Display",Font.BOLD,16);
+        User.setFont(font);
     }
 
     /**
@@ -58,23 +61,14 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         User = new javax.swing.JTextField();
         Password = new javax.swing.JPasswordField();
+        Salir = new javax.swing.JLabel();
+        Ingresar = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(300, 500));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton1.setText("Ingresar");
-        jButton1.setPreferredSize(new java.awt.Dimension(70, 20));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, 90, -1));
 
         User.setText("Usuario");
         User.setPreferredSize(new java.awt.Dimension(110, 20));
@@ -83,7 +77,7 @@ public class Login extends javax.swing.JFrame {
                 UserMouseClicked(evt);
             }
         });
-        getContentPane().add(User, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 270, -1, -1));
+        getContentPane().add(User, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, -1, -1));
 
         Password.setText("jPasswordField1");
         Password.setPreferredSize(new java.awt.Dimension(110, 20));
@@ -92,13 +86,47 @@ public class Login extends javax.swing.JFrame {
                 PasswordMouseClicked(evt);
             }
         });
-        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(95, 348, -1, -1));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 500));
+        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, -1, -1));
+
+        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.png"))); // NOI18N
+        Salir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SalirMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                SalirMouseReleased(evt);
+            }
+        });
+        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 140, 70));
+
+        Ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar.png"))); // NOI18N
+        Ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                IngresarMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                IngresarMouseReleased(evt);
+            }
+        });
+        getContentPane().add(Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, 140, 70));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void UserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserMouseClicked
+        User.setText("");
+    }//GEN-LAST:event_UserMouseClicked
+
+    private void PasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasswordMouseClicked
+        Password.setText("");
+    }//GEN-LAST:event_PasswordMouseClicked
+
+    private void IngresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IngresarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IngresarMouseClicked
+
+    private void IngresarMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_IngresarMouseReleased
         String Usuario = User.getText();
         String password = Password.getText();
         String[] datos = new String[2];
@@ -113,12 +141,21 @@ public class Login extends javax.swing.JFrame {
             }
             String passMD5 = MD5(password);
             if(Usuario.equals(datos[0]) && passMD5.equals(datos[1])){
-                JOptionPane.showMessageDialog(null, "Login exitoso");
-                UI interfaz = new UI();
-                interfaz.setLocationRelativeTo(null);
-                interfaz.setVisible(true);
-                interfaz.setSize(700,500);
-                this.setVisible(false);
+                if(datos[0].equals("root")){
+                    JOptionPane.showMessageDialog(null, "Logged as root");
+                    AI interfaz = new AI();
+                    interfaz.setLocationRelativeTo(null);
+                    interfaz.setVisible(true);
+                    interfaz.setSize(700,500);
+                    this.setVisible(false);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Login exitoso");
+                    UI interfaz = new UI();
+                    interfaz.setLocationRelativeTo(null);
+                    interfaz.setVisible(true);
+                    interfaz.setSize(700,500);
+                    this.setVisible(false);
+                }
             }else{
                 JOptionPane.showMessageDialog(null, "Las credenciales son invalidas");
             }
@@ -127,15 +164,15 @@ public class Login extends javax.swing.JFrame {
         }catch (Exception ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_IngresarMouseReleased
 
-    private void UserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_UserMouseClicked
-        User.setText("");
-    }//GEN-LAST:event_UserMouseClicked
+    private void SalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SalirMouseClicked
 
-    private void PasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PasswordMouseClicked
-        Password.setText("");
-    }//GEN-LAST:event_PasswordMouseClicked
+    private void SalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseReleased
+        System.exit(0);
+    }//GEN-LAST:event_SalirMouseReleased
 
     /**
      * @param args the command line arguments
@@ -176,9 +213,10 @@ public class Login extends javax.swing.JFrame {
         return new BigInteger(1,m.digest()).toString(16); 
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Ingresar;
     private javax.swing.JPasswordField Password;
+    private javax.swing.JLabel Salir;
     private javax.swing.JTextField User;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

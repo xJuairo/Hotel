@@ -36,6 +36,7 @@ public class UI extends javax.swing.JFrame {
         Consultas = new javax.swing.JLabel();
         Salir = new javax.swing.JLabel();
         Bajas = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -63,6 +64,9 @@ public class UI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Bajas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 140, 120));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -127,5 +131,6 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JLabel Bajas;
     private javax.swing.JLabel Consultas;
     private javax.swing.JLabel Salir;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

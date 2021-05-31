@@ -5,11 +5,18 @@
         <group>
             <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/Login.java</file>
             <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/Altas.java</file>
+            <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/AdminAddTHab.java</file>
+            <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/AdminAddHab.java</file>
+            <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/AdminAddUser.java</file>
+            <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/AdminDelHab.java</file>
+            <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/AdminDelUser.java</file>
+            <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/Consultas.java</file>
+            <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/AI.java</file>
+            <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/AdminDelTHab.java</file>
             <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/Hotel.java</file>
             <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/Bajas.java</file>
             <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/UI.java</file>
             <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/Conexion.java</file>
-            <file>file:/C:/Users/xjlop/Documents/NetBeansProjects/Hotel/src/hotel/Consultas.java</file>
         </group>
     </open-files>
 </project-private>
