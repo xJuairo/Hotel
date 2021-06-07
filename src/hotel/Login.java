@@ -45,15 +45,15 @@ public class Login extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         User.setOpaque(false);
         User.setBorder(null);
-        User.setForeground(Color.white);
-        Password.setForeground(Color.white);
+        User.setForeground(Color.black);
+        Password.setForeground(Color.black);
         Password.setOpaque(false);
         Password.setBorder(null);
         Image l = new ImageIcon(this.getClass().getResource("/Imagenes/BackLogin.png")).getImage();
         ImageIcon ii = new ImageIcon(l);
         jLabel1.setIcon(ii);
         try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, new File(this.getClass().getResource("/Fuentes/SFProDisplay-Bold.ttf").getFile())).deriveFont(16f);
+            Font font = Font.createFont(Font.TRUETYPE_FONT, new File(this.getClass().getResource("/Fuentes/SFProDisplay-Bold.ttf").getFile())).deriveFont(20f);
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             ge.registerFont(font);
             User.setFont(font);
@@ -89,7 +89,12 @@ public class Login extends javax.swing.JFrame {
                 UserMouseClicked(evt);
             }
         });
-        getContentPane().add(User, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, -1, -1));
+        User.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UserActionPerformed(evt);
+            }
+        });
+        getContentPane().add(User, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 260, 30));
 
         Password.setText("jPasswordField1");
         Password.setPreferredSize(new java.awt.Dimension(110, 20));
@@ -98,7 +103,7 @@ public class Login extends javax.swing.JFrame {
                 PasswordMouseClicked(evt);
             }
         });
-        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, -1, -1));
+        getContentPane().add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 353, 260, 30));
 
         Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.png"))); // NOI18N
         Salir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -109,9 +114,8 @@ public class Login extends javax.swing.JFrame {
                 SalirMouseReleased(evt);
             }
         });
-        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 140, 70));
+        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 560, 140, 70));
 
-        Ingresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Ingresar.png"))); // NOI18N
         Ingresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 IngresarMouseClicked(evt);
@@ -120,9 +124,9 @@ public class Login extends javax.swing.JFrame {
                 IngresarMouseReleased(evt);
             }
         });
-        getContentPane().add(Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, 140, 70));
+        getContentPane().add(Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 420, 260, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/BackLogin.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 700));
 
         pack();
@@ -187,6 +191,10 @@ public class Login extends javax.swing.JFrame {
     private void SalirMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SalirMouseReleased
         System.exit(0);
     }//GEN-LAST:event_SalirMouseReleased
+
+    private void UserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UserActionPerformed
 
     /**
      * @param args the command line arguments
