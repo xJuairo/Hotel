@@ -140,7 +140,7 @@ public class Bajas extends javax.swing.JFrame {
             public void run() {
                 new Bajas().setVisible(true);
             }
-        });
+        });//Inicio de ventana JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
