@@ -39,7 +39,7 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         this.setUndecorated(true);
         this.setBackground(new Color(1.0f,1.0f,1.0f,0f));
-        this.setSize(700,500);
+        this.setSize(500,700);
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -121,6 +121,8 @@ public class Login extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, 140, 70));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 700));
 
         pack();
