@@ -7,7 +7,11 @@ package hotel;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
 import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.sql.Connection;
@@ -48,8 +52,16 @@ public class Login extends javax.swing.JFrame {
         Image l = new ImageIcon(this.getClass().getResource("/Imagenes/BackLogin.png")).getImage();
         ImageIcon ii = new ImageIcon(l);
         jLabel1.setIcon(ii);
-        Font font = new Font("SF Pro Display",Font.BOLD,16);
-        User.setFont(font);
+        try {
+            Font font = Font.createFont(Font.TRUETYPE_FONT, new File(this.getClass().getResource("/Fuentes/SFProDisplay-Bold.ttf").getFile())).deriveFont(16f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+            User.setFont(font);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch(FontFormatException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
