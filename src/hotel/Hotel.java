@@ -12,7 +12,7 @@ import java.awt.Color;
  * @author xjlop
  */
 public class Hotel {
-
+//Iniciamos el login de usuarios
     public static void main(String[] args) {
         Login obj = new Login();
     }
