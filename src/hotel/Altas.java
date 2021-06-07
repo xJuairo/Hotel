@@ -35,7 +35,7 @@ public class Altas extends javax.swing.JFrame {
     }
     
     public Altas(){
-        initComponents();
+        initComponents();//Inicio de ventana =D
     }
 
     /**
