@@ -48,11 +48,11 @@ public class AdminAddHab extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NumH.setText("NumH");
-        getContentPane().add(NumH, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, 40, -1));
-        getContentPane().add(THab, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 40, -1));
+        getContentPane().add(NumH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 130, -1));
+        getContentPane().add(THab, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 50, -1));
 
         Ruta.setText("Ruta");
-        getContentPane().add(Ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 80, -1));
+        getContentPane().add(Ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 80, -1));
 
         Agregar.setText("Agregar");
         Agregar.addActionListener(new java.awt.event.ActionListener() {

@@ -39,7 +39,7 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
         this.setUndecorated(true);
         this.setBackground(new Color(1.0f,1.0f,1.0f,0f));
-        this.setSize(500,700);
+        this.setSize(500,700);//Changed
         this.setVisible(true);
         this.setResizable(false);
         this.setLocationRelativeTo(null);

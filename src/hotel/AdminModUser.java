@@ -5,17 +5,31 @@
  */
 package hotel;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
  */
 public class AdminModUser extends javax.swing.JFrame {
-
-    /**
-     * Creates new form AddModUser
-     */
+    
+    
+    Statement st;
+    ResultSet rs;
+    Conexion cc = new Conexion();
+    Connection cn = cc.conexion();
+    String usuar,contra;
+        
     public AdminModUser() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        jTUserMod.setEnabled(false);
+        jTPass.setEnabled(false);
     }
 
     /**
@@ -27,21 +41,143 @@ public class AdminModUser extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jTUserMod = new javax.swing.JTextField();
+        jTPass = new javax.swing.JTextField();
+        jTSearchUsr = new javax.swing.JTextField();
+        jBSearch = new javax.swing.JButton();
+        jBMod = new javax.swing.JButton();
+        jBack = new javax.swing.JButton();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTUserMod.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jTUserMod.setText("User Mod");
+        getContentPane().add(jTUserMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
+
+        jTPass.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jTPass.setText("Password");
+        jTPass.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTPassMouseClicked(evt);
+            }
+        });
+        getContentPane().add(jTPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+
+        jTSearchUsr.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jTSearchUsr.setText("Search Usr:");
+        jTSearchUsr.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTSearchUsrMouseClicked(evt);
+            }
+        });
+        jTSearchUsr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTSearchUsrActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTSearchUsr, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 110, -1));
+
+        jBSearch.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jBSearch.setText("Buscar Usuario");
+        jBSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSearchActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+
+        jBMod.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jBMod.setText("Modificar");
+        jBMod.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, -1, -1));
+
+        jBack.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jBack.setText("Volver");
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jBSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSearchActionPerformed
+        // TODO add your handling code here:
+        String usr = jTSearchUsr.getText();
+        String[] vec = new String[2];        
+        
+        if(this.jTSearchUsr == null){
+            try{
+
+                st = cn.createStatement();
+                rs = st.executeQuery("Select * from credenciales where Usr='"+usr+"'");
+
+                while(rs.next()){
+                    vec[0] = rs.getString(1);
+                    vec[1] = rs.getString(2);                
+                }
+                jTUserMod.setText(vec[0]);
+                jTPass.setText(vec[1]);
+                usuar = vec[0];
+                contra = vec[1];
+                jTUserMod.setEnabled(true);
+                jTPass.setEnabled(true);
+
+                JOptionPane.showMessageDialog(null,"Usuario encontrado exisotsamente!");
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null,"ERROR!");
+            }
+        }
+    }//GEN-LAST:event_jBSearchActionPerformed
+
+    private void jBModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModActionPerformed
+        // TODO add your handling code here:
+        String usr = this.jTUserMod.getText();
+        String pass = this.jTPass.getText();
+        
+        PreparedStatement ps;
+        
+        try{
+            ps = cn.prepareStatement("Update credenciales set Usr='"+usr+"',Pass=MD5('"+pass+"') where Usr='"+usuar+"' && Pass=MD5('"+contra+"')");
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null,"Succesfully Updated Password!");
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"ERROR!");
+        }
+        jTUserMod.setEnabled(false);
+        jTPass.setEnabled(false);
+    }//GEN-LAST:event_jBModActionPerformed
+
+    private void jTSearchUsrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTSearchUsrActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTSearchUsrActionPerformed
+
+    private void jTSearchUsrMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTSearchUsrMouseClicked
+        // TODO add your handling code here:
+        jTSearchUsr.setText("");
+    }//GEN-LAST:event_jTSearchUsrMouseClicked
+
+    private void jTPassMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTPassMouseClicked
+        // TODO add your handling code here:
+        jTPass.setText("");
+    }//GEN-LAST:event_jTPassMouseClicked
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        // TODO add your handling code here:
+        AI interfaz = new AI();
+        interfaz.setLocationRelativeTo(null);
+        interfaz.setVisible(true);
+        interfaz.setSize(700,500);
+        this.setVisible(false);
+    }//GEN-LAST:event_jBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -80,5 +216,11 @@ public class AdminModUser extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBMod;
+    private javax.swing.JButton jBSearch;
+    private javax.swing.JButton jBack;
+    private javax.swing.JTextField jTPass;
+    private javax.swing.JTextField jTSearchUsr;
+    private javax.swing.JTextField jTUserMod;
     // End of variables declaration//GEN-END:variables
 }
