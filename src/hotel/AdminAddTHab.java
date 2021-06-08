@@ -44,7 +44,13 @@ public class AdminAddTHab extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Precio.setText("Presio");
+        Precio.setEditable(false);
+        Precio.setText("Precio");
+        Precio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PrecioActionPerformed(evt);
+            }
+        });
         getContentPane().add(Precio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 80, -1));
         getContentPane().add(THab, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 40, -1));
 
@@ -54,7 +60,7 @@ public class AdminAddTHab extends javax.swing.JFrame {
                 AgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 80, -1));
+        getContentPane().add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 80, -1));
 
         Volver.setText("Volver");
         Volver.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +68,7 @@ public class AdminAddTHab extends javax.swing.JFrame {
                 VolverActionPerformed(evt);
             }
         });
-        getContentPane().add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 150, 90, -1));
+        getContentPane().add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 200, 90, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
@@ -92,6 +98,10 @@ public class AdminAddTHab extends javax.swing.JFrame {
         interfaz.setSize(700,500);
         this.setVisible(false);
     }//GEN-LAST:event_VolverActionPerformed
+
+    private void PrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PrecioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PrecioActionPerformed
 
     /**
      * @param args the command line arguments
