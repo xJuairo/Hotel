@@ -18,9 +18,6 @@ import javax.swing.JOptionPane;
  */
 public class AdminDelHab extends javax.swing.JFrame {
 
-    /**
-     * Creates new form AdminDelHab
-     */
     Conexion cc = new Conexion();
     Connection cn = cc.conexion();
     PreparedStatement ps;
@@ -28,6 +25,7 @@ public class AdminDelHab extends javax.swing.JFrame {
     ResultSet rs;
     public AdminDelHab() {
         initComponents();
+        this.setLocationRelativeTo(null);
         String Query = "SELECT NumH FROM habitacion";
         try{
             st = cn.createStatement();
@@ -35,6 +33,7 @@ public class AdminDelHab extends javax.swing.JFrame {
             while(rs.next()){
                 Habitaciones.addItem(rs.getString(1));
             }
+            JOptionPane.showMessageDialog(null,"Eliminaste Satisfactoriamente!");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
@@ -57,6 +56,11 @@ public class AdminDelHab extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Habitaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HabitacionesActionPerformed(evt);
+            }
+        });
         getContentPane().add(Habitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 153, 130, -1));
 
         Eliminar.setText("Eliminar");
@@ -101,6 +105,10 @@ public class AdminDelHab extends javax.swing.JFrame {
         interfaz.setSize(700,500);
         this.setVisible(false);
     }//GEN-LAST:event_VolverActionPerformed
+
+    private void HabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HabitacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HabitacionesActionPerformed
 
     /**
      * @param args the command line arguments

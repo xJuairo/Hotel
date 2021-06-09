@@ -70,7 +70,7 @@ public class AdminDelTHab extends javax.swing.JFrame {
                 VolverActionPerformed(evt);
             }
         });
-        getContentPane().add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 90, -1));
+        getContentPane().add(Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 210, 90, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));

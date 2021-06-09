@@ -47,13 +47,14 @@ public class AdminModUser extends javax.swing.JFrame {
         jBSearch = new javax.swing.JButton();
         jBMod = new javax.swing.JButton();
         jBack = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTUserMod.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jTUserMod.setText("User Mod");
-        getContentPane().add(jTUserMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, -1, -1));
+        getContentPane().add(jTUserMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, -1, -1));
 
         jTPass.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jTPass.setText("Password");
@@ -62,7 +63,7 @@ public class AdminModUser extends javax.swing.JFrame {
                 jTPassMouseClicked(evt);
             }
         });
-        getContentPane().add(jTPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
+        getContentPane().add(jTPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
 
         jTSearchUsr.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jTSearchUsr.setText("Search Usr:");
@@ -76,7 +77,7 @@ public class AdminModUser extends javax.swing.JFrame {
                 jTSearchUsrActionPerformed(evt);
             }
         });
-        getContentPane().add(jTSearchUsr, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 120, 110, -1));
+        getContentPane().add(jTSearchUsr, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 110, -1));
 
         jBSearch.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBSearch.setText("Buscar Usuario");
@@ -85,7 +86,7 @@ public class AdminModUser extends javax.swing.JFrame {
                 jBSearchActionPerformed(evt);
             }
         });
-        getContentPane().add(jBSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, -1, -1));
+        getContentPane().add(jBSearch, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, -1, -1));
 
         jBMod.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jBMod.setText("Modificar");
@@ -94,7 +95,7 @@ public class AdminModUser extends javax.swing.JFrame {
                 jBModActionPerformed(evt);
             }
         });
-        getContentPane().add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, -1, -1));
+        getContentPane().add(jBMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 290, -1, -1));
 
         jBack.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
         jBack.setText("Volver");
@@ -103,7 +104,10 @@ public class AdminModUser extends javax.swing.JFrame {
                 jBackActionPerformed(evt);
             }
         });
-        getContentPane().add(jBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, -1, -1));
+        getContentPane().add(jBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 290, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pool.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -113,7 +117,7 @@ public class AdminModUser extends javax.swing.JFrame {
         String usr = jTSearchUsr.getText();
         String[] vec = new String[2];        
         
-        if(this.jTSearchUsr == null){
+        if(!usr.isEmpty()){
             try{
 
                 st = cn.createStatement();
@@ -134,6 +138,8 @@ public class AdminModUser extends javax.swing.JFrame {
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(null,"ERROR!");
             }
+        }else{
+            JOptionPane.showMessageDialog(null,"ERROR! ESPACIOS VACIOS");
         }
     }//GEN-LAST:event_jBSearchActionPerformed
 
@@ -219,6 +225,7 @@ public class AdminModUser extends javax.swing.JFrame {
     private javax.swing.JButton jBMod;
     private javax.swing.JButton jBSearch;
     private javax.swing.JButton jBack;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField jTPass;
     private javax.swing.JTextField jTSearchUsr;
     private javax.swing.JTextField jTUserMod;

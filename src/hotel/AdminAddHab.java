@@ -21,11 +21,11 @@ public class AdminAddHab extends javax.swing.JFrame {
      */
     Conexion cc = new Conexion();
     Connection cn = cc.conexion();
-    PreparedStatement ps;
-    
+    PreparedStatement ps;    
     
     public AdminAddHab() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -48,10 +48,30 @@ public class AdminAddHab extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         NumH.setText("NumH");
+        NumH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NumHMouseClicked(evt);
+            }
+        });
         getContentPane().add(NumH, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 130, -1));
+
+        THab.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                THabAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         getContentPane().add(THab, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, 50, -1));
 
-        Ruta.setText("Ruta");
+        Ruta.setText("Usuario");
+        Ruta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                RutaMouseClicked(evt);
+            }
+        });
         getContentPane().add(Ruta, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 80, -1));
 
         Agregar.setText("Agregar");
@@ -100,6 +120,20 @@ public class AdminAddHab extends javax.swing.JFrame {
         interfaz.setSize(700,500);
         this.setVisible(false);
     }//GEN-LAST:event_VolverActionPerformed
+
+    private void THabAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_THabAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_THabAncestorAdded
+
+    private void RutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RutaMouseClicked
+        // TODO add your handling code here:
+        Ruta.setText("");
+    }//GEN-LAST:event_RutaMouseClicked
+
+    private void NumHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NumHMouseClicked
+        // TODO add your handling code here:
+        NumH.setText("");
+    }//GEN-LAST:event_NumHMouseClicked
 
     /**
      * @param args the command line arguments
