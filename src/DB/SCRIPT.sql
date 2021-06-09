@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2021 at 12:25 AM
+-- Generation Time: Jun 10, 2021 at 01:08 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -80,7 +80,9 @@ INSERT INTO `galeria` (`RutaImagen`, `Id`) VALUES
 ('H3.jpg', 3),
 ('H4.jpg', 4),
 ('H5.jpg', 5),
-('H6.jpg', 6);
+('H6.jpg', 6),
+('H7.jpg', 7),
+('H8.jpg', 8);
 
 -- --------------------------------------------------------
 
@@ -164,17 +166,18 @@ CREATE TABLE `tipohab` (
   `Precio` int(4) DEFAULT NULL,
   `THab` int(1) NOT NULL,
   `nombre` varchar(20) DEFAULT NULL,
-  `Personas` int(2) DEFAULT NULL
+  `Personas` int(2) DEFAULT NULL,
+  `Ruta` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tipohab`
 --
 
-INSERT INTO `tipohab` (`Precio`, `THab`, `nombre`, `Personas`) VALUES
-(2000, 1, 'Sencilla', 1),
-(2500, 2, 'Doble', 2),
-(3000, 3, 'Triple', 3);
+INSERT INTO `tipohab` (`Precio`, `THab`, `nombre`, `Personas`, `Ruta`) VALUES
+(2000, 1, 'Sencilla', 1, 'H6.jpg'),
+(2500, 2, 'Doble', 2, 'H5.jpg'),
+(3000, 3, 'Triple', 3, 'H7.jpg');
 
 --
 -- Indexes for dumped tables
