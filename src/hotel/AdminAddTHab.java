@@ -22,8 +22,10 @@ public class AdminAddTHab extends javax.swing.JFrame {
     Conexion cc = new Conexion();
     Connection cn = cc.conexion();
     PreparedStatement ps;
+    
     public AdminAddTHab() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

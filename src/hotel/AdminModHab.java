@@ -5,17 +5,28 @@
  */
 package hotel;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
  */
 public class AdminModHab extends javax.swing.JFrame {
-
-    /**
-     * Creates new form AddModHab
-     */
+    
+    Statement st,zt;
+    ResultSet rs,rz;
+    Conexion cc = new Conexion();
+    Connection cn = cc.conexion();
+    PreparedStatement ps;    
+    
     public AdminModHab() {
         initComponents();
+        this.setLocationRelativeTo(null);           
     }
 
     /**
@@ -27,111 +38,140 @@ public class AdminModHab extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jListTHab = new javax.swing.JList<>();
-        jSpinField1 = new com.toedter.components.JSpinField();
+        NumH = new javax.swing.JTextField();
+        TRuta = new javax.swing.JTextField();
+        THab = new javax.swing.JComboBox<>();
+        NumHab = new javax.swing.JSpinner();
+        jBack = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jTextField1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jTextField1.setText("Cambiar Habitación");
-        jTextField1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField1MouseClicked(evt);
-            }
-        });
-
-        jTextField2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jTextField2.setText("Buscar Habitación");
-        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField2MouseClicked(evt);
-            }
-        });
-
-        jTextField3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
-        jTextField3.setText("Nuevo Precio");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton1.setText("Buscar Habitacion");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
 
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jButton2.setText("Cambiar Tipo de Habitación");
-
-        jListTHab.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Habitación Pequeña", "Habitación Mediana", "Habitación Grande", "Suit 5 Estrellas", "Suit Vista al Mar" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
         });
-        jScrollPane1.setViewportView(jListTHab);
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(87, 87, 87)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(124, 124, 124)
-                        .addComponent(jSpinField1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(jSpinField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(33, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(33, 33, 33))
-        );
+        NumH.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        NumH.setText("Num. Habitacion");
+        NumH.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                NumHMouseClicked(evt);
+            }
+        });
+        getContentPane().add(NumH, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, -1, -1));
+
+        TRuta.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        TRuta.setText("Usuario");
+        TRuta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TRutaMouseClicked(evt);
+            }
+        });
+        getContentPane().add(TRuta, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 80, 30));
+
+        getContentPane().add(THab, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
+        getContentPane().add(NumHab, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, -1, -1));
+
+        jBack.setFont(new java.awt.Font("sansserif", 1, 14)); // NOI18N
+        jBack.setText("Volver");
+        jBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBackActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/pool.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        // TODO add your handling code here:
-        this.jTextField1.setText("");
-    }//GEN-LAST:event_jTextField1MouseClicked
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:                   
+        String routte = TRuta.getText();
+        String numH = THab.getSelectedItem().toString();
+        String nom = NumHab.getValue().toString();        
+        String[] vec = new String[4];
+        if(!routte.isEmpty()){
+            try{                                                
+                
+                st = cn.createStatement();
+                rs = st.executeQuery("SELECT * FROM habitacion(THab,NumH,Ruta,Cupo) VALUES('"+numH+"',?,'"+nom+"','"+routte+"')");
+                
+                while(rs.next()){
+                    vec[0] = rs.getString(1);
+                    vec[1] = rs.getString(2);
+                    vec[2] = rs.getString(3);
+                    vec[3] = rs.getString(4);
+                }                
+                TRuta.setText(vec[4]);                                                                
+                JOptionPane.showMessageDialog(null,"Modificaste exitosamente!");
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null,e);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null,"ERROR! HAY ESPACIOS VACIOS");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+    private void TRutaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TRutaMouseClicked
         // TODO add your handling code here:
-        this.jTextField2.setText("");
-    }//GEN-LAST:event_jTextField2MouseClicked
+        TRuta.setText("");
+    }//GEN-LAST:event_TRutaMouseClicked
+
+    private void NumHMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_NumHMouseClicked
+        // TODO add your handling code here:
+        NumH.setText("");
+    }//GEN-LAST:event_NumHMouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:                        
+        String numH = NumH.getText();
+        String tHab = NumHab.getValue().toString();
+        String routte = TRuta.getText();                        
+                
+            try{                                                
+                st = cn.createStatement();
+                rs = st.executeQuery("SELECT NumH FROM habitacion ");
+                
+                while(rs.next()){
+                    THab.addItem(rs.getString(1)); 
+                    NumH.setText(rs.getString(3));
+                    TRuta.setText(rs.getString(4));
+                }                
+                
+                JOptionPane.showMessageDialog(null,"Modificaste exitosamente!");
+            }catch(SQLException e){
+                JOptionPane.showMessageDialog(null,e);
+            }        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBackActionPerformed
+        // TODO add your handling code here:
+        AI interfaz = new AI();
+        interfaz.setLocationRelativeTo(null);
+        interfaz.setVisible(true);
+        interfaz.setSize(700,500);
+        this.setVisible(false);
+    }//GEN-LAST:event_jBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,13 +210,13 @@ public class AdminModHab extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField NumH;
+    private javax.swing.JSpinner NumHab;
+    private javax.swing.JComboBox<String> THab;
+    private javax.swing.JTextField TRuta;
+    private javax.swing.JButton jBack;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JList<String> jListTHab;
-    private javax.swing.JScrollPane jScrollPane1;
-    private com.toedter.components.JSpinField jSpinField1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
