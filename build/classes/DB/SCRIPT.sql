@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2021 at 01:08 AM
+-- Generation Time: Jun 12, 2021 at 03:26 AM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.2.34
 
@@ -58,6 +58,14 @@ CREATE TABLE `customers` (
   `NumH` int(2) NOT NULL,
   `Sexo` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`Nombre`, `NumTel`, `Correo`, `MetodoP`, `NumH`, `Sexo`) VALUES
+('Piesas', '4493463324', 'piesas@gmail.com', 'Efectivo', 811, 'Masculino'),
+('Jairo', '4493463325', 'xjlopz10@gmail.com', 'Paypal', 911, 'Masculino');
 
 -- --------------------------------------------------------
 
@@ -132,8 +140,8 @@ INSERT INTO `habitacion` (`THab`, `FInic`, `Cupo`, `NumH`, `Piso`) VALUES
 (2, NULL, 0, 511, 1),
 (2, NULL, 0, 611, 1),
 (1, NULL, 0, 711, 1),
-(3, NULL, 0, 811, 1),
-(1, NULL, 0, 911, 1);
+(3, '2021-06-11', 1, 811, 1),
+(1, '2021-06-11', 1, 911, 1);
 
 -- --------------------------------------------------------
 
