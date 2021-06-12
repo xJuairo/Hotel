@@ -36,6 +36,8 @@ public class UI extends javax.swing.JFrame {
         Consultas = new javax.swing.JLabel();
         Salir = new javax.swing.JLabel();
         Bajas = new javax.swing.JLabel();
+        ModUsrs = new javax.swing.JLabel();
+        Galeria = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,7 +49,7 @@ public class UI extends javax.swing.JFrame {
                 ConsultasMouseClicked(evt);
             }
         });
-        getContentPane().add(Consultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 140, 120));
+        getContentPane().add(Consultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 140, 120));
 
         Salir.setText("Salir");
         Salir.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -55,7 +57,7 @@ public class UI extends javax.swing.JFrame {
                 SalirMouseReleased(evt);
             }
         });
-        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 270, 140, 120));
+        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 380, 140, 120));
 
         Bajas.setText("Bajas");
         Bajas.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -63,7 +65,23 @@ public class UI extends javax.swing.JFrame {
                 BajasMouseReleased(evt);
             }
         });
-        getContentPane().add(Bajas, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 140, 120));
+        getContentPane().add(Bajas, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 70, 140, 120));
+
+        ModUsrs.setText("Modificar Usuarios");
+        ModUsrs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                ModUsrsMouseReleased(evt);
+            }
+        });
+        getContentPane().add(ModUsrs, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 140, 120));
+
+        Galeria.setText("Galeria");
+        Galeria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                GaleriaMouseReleased(evt);
+            }
+        });
+        getContentPane().add(Galeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 270, 140, 120));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
@@ -91,6 +109,20 @@ public class UI extends javax.swing.JFrame {
         consultas.setSize(700,500);
         consultas.setResizable(false);
     }//GEN-LAST:event_ConsultasMouseClicked
+
+    private void ModUsrsMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ModUsrsMouseReleased
+        ModificarUsuarios consultas = new ModificarUsuarios();
+        this.setVisible(false);
+        consultas.setVisible(true);
+        consultas.setResizable(false);
+    }//GEN-LAST:event_ModUsrsMouseReleased
+
+    private void GaleriaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GaleriaMouseReleased
+        Galeria consultas = new Galeria();
+        this.setVisible(false);
+        consultas.setVisible(true);
+        consultas.setResizable(false);
+    }//GEN-LAST:event_GaleriaMouseReleased
 
     /**
      * @param args the command line arguments
@@ -130,6 +162,8 @@ public class UI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Bajas;
     private javax.swing.JLabel Consultas;
+    private javax.swing.JLabel Galeria;
+    private javax.swing.JLabel ModUsrs;
     private javax.swing.JLabel Salir;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables

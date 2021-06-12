@@ -12,7 +12,6 @@ public class ReproducirSonidoUAA {
      {
       player=new BasicPlayer(); 
       player.open(new File(this.getClass().getResource("/Sonidos/HimnoUaa.mp3").getFile()));
-   
      }
      
      public void stop() throws BasicPlayerException{

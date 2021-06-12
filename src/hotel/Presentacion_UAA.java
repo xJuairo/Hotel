@@ -20,7 +20,6 @@ public class Presentacion_UAA extends javax.swing.JFrame {
         this.setVisible(true);
          music =new ReproducirSonidoUAA();
          music.reproducir();
-        
     }
 
     /**

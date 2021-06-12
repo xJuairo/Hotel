@@ -27,22 +27,26 @@ public class Consultas extends javax.swing.JFrame {
     ResultSet rs;
     Statement st;
     DefaultTableModel modelo = new DefaultTableModel();
-    String[] datos = new String[3];
+    String[] datos = new String[4];
     
     public Consultas() {
         initComponents();
         Reservar.setEnabled(false);
         Tabla.setModel(modelo);
-        modelo.addColumn("NumH");
-        modelo.addColumn("THab");
+        modelo.addColumn("Numero de Habitacion");
+        modelo.addColumn("Tipo de Habitacion");
         modelo.addColumn("Cupo");
+        modelo.addColumn("Piso");
         try{
             st = cn.createStatement();
-            rs = st.executeQuery("SELECT NumH,THab,Cupo FROM habitacion WHERE Cupo = 0;");
+            rs = st.executeQuery("SELECT NumH,THab,Cupo,Piso FROM habitacion WHERE Cupo = 0;");
             while(rs.next()){
                 datos[0] = rs.getString(1);
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
+                if(rs.getString(3).equals("0"))
+                    datos[2] = "Desocupado";
+                datos[3] = rs.getString(4);
                 modelo.addRow(datos);
             }
         }catch(SQLException e){
@@ -62,9 +66,9 @@ public class Consultas extends javax.swing.JFrame {
         Fecha = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
-        Imagen = new javax.swing.JLabel();
         Reservar = new javax.swing.JButton();
         Regresar = new javax.swing.JLabel();
+        Imagen = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -110,9 +114,6 @@ public class Consultas extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, 130));
 
-        Imagen.setText("Imagen");
-        getContentPane().add(Imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 170, 100));
-
         Reservar.setText("Reservar");
         Reservar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,6 +129,7 @@ public class Consultas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, 100, 50));
+        getContentPane().add(Imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
@@ -136,15 +138,16 @@ public class Consultas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
-        String[] weas = new String[3];
+        String[] weas = new String[4];
         String ruta = "";
         int row = Tabla.getSelectedRow();
         weas[0] = (String)Tabla.getValueAt(row, 0);
         weas[1] = (String)Tabla.getValueAt(row, 1);
         weas[2] = (String)Tabla.getValueAt(row, 2);
+        weas[3] = (String)Tabla.getValueAt(row, 3);
         try{
             st = cn.createStatement();
-            rs = st.executeQuery("SELECT Ruta FROM habitacion WHERE NumH = " + weas[0]);
+            rs = st.executeQuery("SELECT Ruta FROM tipohab WHERE THab = " + weas[1]);
             while(rs.next()){
                 ruta = rs.getString(1);
             }
