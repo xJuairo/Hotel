@@ -22,7 +22,7 @@ public class PresentacionSystem extends javax.swing.JFrame {
  
     public PresentacionSystem() throws BasicPlayerException {
         initComponents();
-        this.setSize(1290,720);   
+        this.setSize(1152,864);   
         this.setVisible(true);
          music =new ReproducirSonidoSystem();
          music.reproducir();
@@ -59,16 +59,16 @@ public class PresentacionSystem extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(491, 491, 491)
+                .addGap(486, 486, 486)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(630, Short.MAX_VALUE))
+                .addContainerGap(635, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(440, Short.MAX_VALUE)
+                .addContainerGap(382, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(219, 219, 219))
+                .addGap(277, 277, 277))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
