@@ -1,10 +1,19 @@
 package hotel;
 
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class Altas extends javax.swing.JFrame {
@@ -15,19 +24,48 @@ public class Altas extends javax.swing.JFrame {
     Connection cn = cc.conexion();
     Statement st;
     ResultSet rs;
+    int limtepersonas;
+    
+
     public Altas(String F, String numh) {
         initComponents();
+        this.setSize(700,500);
+        this.Recibo.setVisible(false);
         date = F;
         Fecha.setText(date);
-        Fecha.setEditable(false);
         num = numh;
+        ArrayList <HAB>  thab = new ArrayList();
+        
         //SELECT NumH FROM Habitacion WHERE Cupo = 0
         try{
+            
             st = cn.createStatement();
-            rs = st.executeQuery("SELECT NumH FROM Habitacion WHERE Cupo = 0");
+            rs = st.executeQuery("SELECT NumH,Thab FROM Habitacion WHERE Cupo = 0");
             while(rs.next()){
                 Habitaciones.addItem(rs.getString(1));
+                if(rs.getString(2).equals("1")){
+                    thab.add(new HAB (rs.getInt(1),"Hab.Sencilla",rs.getInt(2)));
+                }
+                if(rs.getString(2).equals("2")){
+                   thab.add(new HAB (rs.getInt(1),"Hab.Doble",rs.getInt(2)));
+                }
+                if(rs.getString(2).equals("3")){
+                    thab.add(new HAB (rs.getInt(1),"Hab.Triple",rs.getInt(2)));
+                }
             }
+            Habitaciones.addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent arg0) {
+                    for(HAB Htaciones:thab){
+                         if(Htaciones.getNUMHAB() == Integer.parseInt((String) Habitaciones.getSelectedItem())){
+                          Thab.setText(Htaciones.getTipo());
+                          limtepersonas=Htaciones.getTHABENT();
+                        }
+                        
+                    }
+                 
+
+                    }
+            });
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error");
         }
@@ -53,80 +91,200 @@ public class Altas extends javax.swing.JFrame {
         Correo = new javax.swing.JTextField();
         MetodoP = new javax.swing.JTextField();
         Habitaciones = new javax.swing.JComboBox<>();
-        Fecha = new javax.swing.JTextField();
         Agregar = new javax.swing.JButton();
         Regresar = new javax.swing.JLabel();
         Masculino = new javax.swing.JRadioButton();
         Femenino = new javax.swing.JRadioButton();
+        jLabel10 = new javax.swing.JLabel();
+        Thab = new javax.swing.JTextField();
+        ciudad = new javax.swing.JTextField();
+        Tper = new javax.swing.JTextField();
+        tdias = new javax.swing.JTextField();
+        FechaSal = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        Fecha = new javax.swing.JTextField();
+        Recibo = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Nombre.setText("Nombre");
         Nombre.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 NombreMouseClicked(evt);
             }
         });
-        getContentPane().add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 90, -1));
+        Nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 200, -1));
 
-        Telefono.setText("Telefono");
         Telefono.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TelefonoMouseClicked(evt);
             }
         });
-        getContentPane().add(Telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 120, 90, -1));
+        getContentPane().add(Telefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, 180, -1));
 
-        Correo.setText("Correo");
         Correo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CorreoMouseClicked(evt);
             }
         });
-        getContentPane().add(Correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 90, -1));
+        getContentPane().add(Correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 200, -1));
 
-        MetodoP.setText("Metodo de Pago");
         MetodoP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 MetodoPMouseClicked(evt);
             }
         });
-        getContentPane().add(MetodoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, 90, -1));
+        getContentPane().add(MetodoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 160, -1));
 
-        getContentPane().add(Habitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, 90, -1));
+        Habitaciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HabitacionesActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Habitaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 240, 90, -1));
 
-        Fecha.setText("Fecha");
-        getContentPane().add(Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 80, 90, -1));
-
-        Agregar.setText("Agregar");
+        Agregar.setText("REGISTRAR");
         Agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 90, -1));
+        getContentPane().add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 430, 120, 30));
 
-        Regresar.setText("Regresar");
+        Regresar.setFont(new java.awt.Font("Baskerville Old Face", 3, 24)); // NOI18N
+        Regresar.setText("BACK ");
+        Regresar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        Regresar.setOpaque(true);
         Regresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 RegresarMouseClicked(evt);
             }
         });
-        getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 140, 80));
+        getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 80, 40));
 
         Sexo.add(Masculino);
         Masculino.setText("Masculino");
-        getContentPane().add(Masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, -1, -1));
+        getContentPane().add(Masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, -1, -1));
 
         Sexo.add(Femenino);
         Femenino.setText("Femenino");
-        getContentPane().add(Femenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, -1, -1));
+        getContentPane().add(Femenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, -1, -1));
 
-        jLabel1.setText("Sexo");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 60, -1));
+        jLabel10.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel10.setText("TIPO DE HABITACION");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 220, -1));
+
+        Thab.setEditable(false);
+        Thab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ThabActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Thab, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 280, 100, -1));
+        getContentPane().add(ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, 160, -1));
+        getContentPane().add(Tper, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 80, -1));
+
+        tdias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tdiasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(tdias, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, 80, -1));
+
+        FechaSal.setEditable(false);
+        FechaSal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FechaSalActionPerformed(evt);
+            }
+        });
+        getContentPane().add(FechaSal, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 90, -1));
+
+        jLabel14.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel14.setText("SALIDA");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 110, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel12.setText("TOTAL DE PERSONAS");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 360, 210, -1));
+
+        jLabel13.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel13.setText("TOTAL DE DIAS ");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel11.setText("CD.ORIGEN");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 120, -1));
+
+        Fecha.setEditable(false);
+        getContentPane().add(Fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 70, 90, -1));
+
+        Recibo.setText("IMPRIMIR RECIBO");
+        Recibo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReciboActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Recibo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 160, 30));
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("AVISOS:\nLa Habitacion sencilla tiene la\ncapacidad de 1 personas, la do-\nble tiene la capacidad de 2\npersonas y la triple de 3 perso-\nnas,si se desea agregar 1 o 2 \npersonas extras se haran cargos \nadicionales.\nLa fecha de salida se obtendra\nautomaticamente tras registrar-\nse. ");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 180, 280, 150));
+
+        jLabel9.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel9.setText("FECHA");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 40, -1, -1));
+
+        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel4.setText("NOMBRE");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 90, -1));
+
+        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel5.setText("TELEFONO");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 110, -1));
+
+        jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel6.setText("CORREO");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 90, -1));
+
+        jLabel7.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel7.setText("METODO DE PAGO");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 190, -1));
+
+        jLabel8.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel8.setText("NUM HAB");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 100, -1));
+
+        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 3, 24)); // NOI18N
+        jLabel3.setText("REGISTRO / CHECK IN");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 290, -1));
+
+        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 3, 18)); // NOI18N
+        jLabel1.setText("SEXO");
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 40, 60, 30));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
@@ -152,12 +310,19 @@ public class Altas extends javax.swing.JFrame {
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
         //UPDATE habitacion Cupo = 1 WHERE NumH = "+Habitaciones.getSelectedItem()+"
-        //INSERT INTO customers(Nombre,NumTel,Correo,MetodoP,NumH) VALUES('"+nombre+"',"+numtel+",'"+correo+"','"+metodop+"',"+numh+")
+        //INSERT INTO customers(Nombre,NumTel,Correo,MetodoP,NumH) VALUES('"+nombre+"',"+numtel+",'"+correo+"','"+metodop+"',"+numh+") 
+        int checkeo=Integer.parseInt(this.Tper.getText());
+        if(checkeo>limtepersonas+2){
+           JOptionPane.showMessageDialog(null,"El limite de esta habitacion es "+(this.limtepersonas)+" solo se permiten una o dos personas extras");
+        }else{
         String nombre = Nombre.getText();
         String numtel = Telefono.getText();
         String correo = Correo.getText();
         String metodop = MetodoP.getText();
         String numh = (String)Habitaciones.getSelectedItem();
+        String Ciudad= this.ciudad.getText();
+        String tper=this.Tper.getText();
+        String dias=this.tdias.getText();
         String sexo = "";
         if(Masculino.isSelected())
             sexo = "Masculino";
@@ -165,7 +330,7 @@ public class Altas extends javax.swing.JFrame {
             sexo = "Femenino";
         PreparedStatement ps;
         try{
-            ps = cn.prepareStatement("INSERT INTO customers(Nombre,NumTel,Correo,MetodoP,NumH,Sexo) VALUES('"+nombre+"','"+numtel+"','"+correo+"','"+metodop+"',"+numh+",'"+sexo+"')");
+            ps = cn.prepareStatement("INSERT INTO customers(Nombre,NumTel,Correo,MetodoP,NumH,Sexo,CiudaddeOrigen,dias,Tpersonas) VALUES('"+nombre+"','"+numtel+"','"+correo+"','"+metodop+"','"+numh+"','"+sexo+"','"+Ciudad+"','"+dias+"','"+tper+"')");
             ps.executeUpdate();
             ps = cn.prepareStatement("UPDATE habitacion SET Cupo=1,FInic='"+date+"' WHERE NumH = "+Habitaciones.getSelectedItem()+"");
             ps.executeUpdate();
@@ -173,12 +338,29 @@ public class Altas extends javax.swing.JFrame {
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
         }
-        UI ui = new UI();
-        this.setVisible(false);
-        ui.setVisible(true);
-        ui.setSize(700, 500);
-        ui.setResizable(false);
-        ui.setLocationRelativeTo(null);
+        
+        
+        SimpleDateFormat Date_Format = new SimpleDateFormat("yyyy-MM-dd"); 
+        int dias1 = Integer.parseInt(this.tdias.getText());
+        Date fecha;
+        try {
+        fecha = Date_Format.parse(this.Fecha.getText());
+             if (dias1==0)  
+                 FechaSal.setText(Fecha.getText());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fecha); 
+        calendar.add(Calendar.DAY_OF_YEAR, dias1);
+        String dob = ""+calendar.getTime();
+   
+        dob = Date_Format.format(calendar.getTime());
+        FechaSal.setText(dob); 
+        } catch (ParseException ex) {
+            Logger.getLogger(Altas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        this.Recibo.setVisible(true);
+        }
+        
     }//GEN-LAST:event_AgregarActionPerformed
 
     private void RegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegresarMouseClicked
@@ -189,6 +371,32 @@ public class Altas extends javax.swing.JFrame {
         ui.setResizable(false);
         ui.setLocationRelativeTo(null);
     }//GEN-LAST:event_RegresarMouseClicked
+
+    private void ThabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ThabActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ThabActionPerformed
+
+    private void HabitacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HabitacionesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HabitacionesActionPerformed
+
+    private void tdiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tdiasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tdiasActionPerformed
+
+    private void FechaSalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaSalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FechaSalActionPerformed
+
+    private void NombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreActionPerformed
+
+    private void ReciboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReciboActionPerformed
+        Recibo ui = new Recibo(this.Fecha.getText(),this.FechaSal.getText(),this.Nombre.getText());
+        this.setVisible(false);
+        ui.setVisible(true);
+    }//GEN-LAST:event_ReciboActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,20 +432,44 @@ public class Altas extends javax.swing.JFrame {
             }
         });
     }
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Agregar;
     private javax.swing.JTextField Correo;
     private javax.swing.JTextField Fecha;
+    private javax.swing.JTextField FechaSal;
     private javax.swing.JRadioButton Femenino;
     private javax.swing.JComboBox<String> Habitaciones;
     private javax.swing.JRadioButton Masculino;
     private javax.swing.JTextField MetodoP;
     private javax.swing.JTextField Nombre;
+    private javax.swing.JButton Recibo;
     private javax.swing.JLabel Regresar;
     private javax.swing.ButtonGroup Sexo;
     private javax.swing.JTextField Telefono;
+    private javax.swing.JTextField Thab;
+    private javax.swing.JTextField Tper;
+    private javax.swing.JTextField ciudad;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField tdias;
     // End of variables declaration//GEN-END:variables
 }
+
+

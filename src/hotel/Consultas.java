@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package hotel;
 
 import java.awt.Image;
@@ -32,22 +27,37 @@ public class Consultas extends javax.swing.JFrame {
     ResultSet rs;
     Statement st;
     DefaultTableModel modelo = new DefaultTableModel();
-    String[] datos = new String[3];
+    String[] datos = new String[4];
     
     public Consultas() {
         initComponents();
+        this.setSize(700,560);
         Reservar.setEnabled(false);
         Tabla.setModel(modelo);
-        modelo.addColumn("NumH");
-        modelo.addColumn("THab");
+        modelo.addColumn("Numero de Habitacion");
+        modelo.addColumn("Tipo de Habitacion");
         modelo.addColumn("Cupo");
+        modelo.addColumn("Piso");
         try{
             st = cn.createStatement();
-            rs = st.executeQuery("SELECT NumH,THab,Cupo FROM habitacion WHERE Cupo = 0;");
+            rs = st.executeQuery("SELECT NumH,THab,Cupo,Piso FROM habitacion WHERE Cupo = 0;");
             while(rs.next()){
                 datos[0] = rs.getString(1);
                 datos[1] = rs.getString(2);
                 datos[2] = rs.getString(3);
+                if(rs.getString(2).equals("1")){
+                    datos[1] = "Hab.Sencilla";
+                }
+                if(rs.getString(2).equals("2")){
+                     datos[1] = "Hab.Doble";
+                }
+                if(rs.getString(2).equals("3")){
+                     datos[1] = "Hab.Triple";
+                }
+                if(rs.getString(3).equals("0")){
+                    datos[2] = "Desocupado";
+                }
+                datos[3] = rs.getString(4);
                 modelo.addRow(datos);
             }
         }catch(SQLException e){
@@ -67,10 +77,15 @@ public class Consultas extends javax.swing.JFrame {
         Fecha = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
-        Imagen = new javax.swing.JLabel();
         Reservar = new javax.swing.JButton();
         Regresar = new javax.swing.JLabel();
+        Imagen = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -113,10 +128,7 @@ public class Consultas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Tabla);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, -1, 130));
-
-        Imagen.setText("Imagen");
-        getContentPane().add(Imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 170, 100));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 270, -1, 130));
 
         Reservar.setText("Reservar");
         Reservar.addActionListener(new java.awt.event.ActionListener() {
@@ -124,39 +136,88 @@ public class Consultas extends javax.swing.JFrame {
                 ReservarActionPerformed(evt);
             }
         });
-        getContentPane().add(Reservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 410, 110, -1));
+        getContentPane().add(Reservar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 430, 110, 30));
 
-        Regresar.setText("Regresar");
+        Regresar.setFont(new java.awt.Font("Baskerville Old Face", 3, 24)); // NOI18N
+        Regresar.setForeground(new java.awt.Color(255, 0, 0));
+        Regresar.setText("BACK");
+        Regresar.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)));
         Regresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 RegresarMouseReleased(evt);
             }
         });
-        getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 410, 100, 50));
+        getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 430, 100, 50));
+
+        Imagen.setBorder(new javax.swing.border.MatteBorder(null));
+        Imagen.setOpaque(true);
+        getContentPane().add(Imagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 350, 170));
+
+        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 3, 24)); // NOI18N
+        jLabel2.setText("VISTA PREVIA HABITACION :");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 370, -1));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setText("Selecciona Fecha para habilitar \"Resevar\"");
+        jLabel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jLabel3.setOpaque(true);
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 260, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
+
+        jMenu1.setText("CHECK IN/CONSULTA");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("DISTRIBUCION DE HABITACIONES");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void TablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMouseClicked
-        String[] weas = new String[3];
+        String[] weas = new String[4];
         String ruta = "";
         int row = Tabla.getSelectedRow();
         weas[0] = (String)Tabla.getValueAt(row, 0);
-        weas[1] = (String)Tabla.getValueAt(row, 1);
+       
+        if(Tabla.getValueAt(row, 1).equals("Hab.Sencilla")){
+             weas[1] = "1";
+        }
+        if(Tabla.getValueAt(row, 1).equals("Hab.Doble")){
+             weas[1] = "2";
+        }
+        if(Tabla.getValueAt(row, 1).equals("Hab.Triple")){
+             weas[1] = "3";
+        }
         weas[2] = (String)Tabla.getValueAt(row, 2);
+        weas[3] = (String)Tabla.getValueAt(row, 3);
         try{
             st = cn.createStatement();
-            rs = st.executeQuery("SELECT Ruta FROM habitacion WHERE NumH = " + weas[0]);
+            rs = st.executeQuery("SELECT Ruta FROM tipohab WHERE THab = " + weas[1]);
             while(rs.next()){
+                
                 ruta = rs.getString(1);
             }
             System.out.println(ruta);
-            Image l = new ImageIcon(this.getClass().getResource("/Imagenes/"+ruta)).getImage();
+            Image l = new ImageIcon(this.getClass().getResource("/Imagenes/"+ruta)).getImage().getScaledInstance(Imagen.getWidth(),
+                Imagen.getHeight(), Image.SCALE_SMOOTH);;
             ImageIcon ii = new ImageIcon(l);
             Imagen.setIcon(ii);
+            datos= weas;
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error");
         }
@@ -169,7 +230,7 @@ public class Consultas extends javax.swing.JFrame {
         dob = Date_Format.format(Fecha.getDate());
         this.setVisible(false);
         Altas altas = new Altas(dob,datos[0]);
-        altas.setSize(700,500);
+        altas.setSize(710,530);
         altas.setLocationRelativeTo(null);
         altas.setVisible(true);
     }//GEN-LAST:event_ReservarActionPerformed
@@ -204,6 +265,18 @@ public class Consultas extends javax.swing.JFrame {
         ui.setResizable(false);
         ui.setLocationRelativeTo(null);
     }//GEN-LAST:event_RegresarMouseReleased
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+       Consultas UI=new Consultas();
+       this.setVisible(false);
+       UI.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+       Piso1 UI=new Piso1();
+       this.setVisible(false);
+       UI.setVisible(true);
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -248,6 +321,11 @@ public class Consultas extends javax.swing.JFrame {
     private javax.swing.JButton Reservar;
     private javax.swing.JTable Tabla;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

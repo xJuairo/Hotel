@@ -27,8 +27,12 @@
   <SubComponents>
     <Component class="javax.swing.JTextField" name="Precio">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Presio"/>
+        <Property name="editable" type="boolean" value="false"/>
+        <Property name="text" type="java.lang.String" value="Precio"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PrecioActionPerformed"/>
+      </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="60" y="90" width="80" height="-1"/>
@@ -51,7 +55,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="110" y="150" width="80" height="-1"/>
+          <AbsoluteConstraints x="60" y="200" width="80" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -64,7 +68,7 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="310" y="150" width="90" height="-1"/>
+          <AbsoluteConstraints x="170" y="200" width="90" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>
