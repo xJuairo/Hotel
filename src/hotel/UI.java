@@ -38,74 +38,64 @@ public class UI extends javax.swing.JFrame {
         Bajas = new javax.swing.JLabel();
         ModUsrs = new javax.swing.JLabel();
         Galeria = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         Distribuciones = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Consultas.setFont(new java.awt.Font("Baskerville Old Face", 3, 24)); // NOI18N
-        Consultas.setText("->CONSULTA Y CHECK IN");
         Consultas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ConsultasMouseClicked(evt);
             }
         });
-        getContentPane().add(Consultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 330, 60));
+        getContentPane().add(Consultas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 170, 190));
 
-        Salir.setFont(new java.awt.Font("Baskerville Old Face", 3, 24)); // NOI18N
-        Salir.setForeground(new java.awt.Color(255, 0, 0));
-        Salir.setText("   EXIT");
-        Salir.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 0, 0)));
+        Salir.setFont(new java.awt.Font("Calibri Light", 0, 24)); // NOI18N
+        Salir.setBorder(new javax.swing.border.MatteBorder(null));
         Salir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 SalirMouseReleased(evt);
             }
         });
-        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 430, 140, 40));
+        getContentPane().add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 480, 50, 20));
 
         Bajas.setFont(new java.awt.Font("Baskerville Old Face", 3, 24)); // NOI18N
-        Bajas.setText("->CHECK OUT/ BAJA");
         Bajas.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 BajasMouseReleased(evt);
             }
         });
-        getContentPane().add(Bajas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 260, 50));
+        getContentPane().add(Bajas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 160, 180));
 
         ModUsrs.setFont(new java.awt.Font("Baskerville Old Face", 3, 24)); // NOI18N
-        ModUsrs.setText("->EDITAR USUARIO");
         ModUsrs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 ModUsrsMouseReleased(evt);
             }
         });
-        getContentPane().add(ModUsrs, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 260, 50));
+        getContentPane().add(ModUsrs, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 150, 180));
 
         Galeria.setFont(new java.awt.Font("Baskerville Old Face", 3, 24)); // NOI18N
-        Galeria.setText("->GALERIA");
         Galeria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 GaleriaMouseReleased(evt);
             }
         });
-        getContentPane().add(Galeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 150, 40));
-
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 3, 36)); // NOI18N
-        jLabel2.setText("~ M E N U ~");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 16, 240, 60));
+        getContentPane().add(Galeria, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, 160, 180));
 
         Distribuciones.setFont(new java.awt.Font("Baskerville Old Face", 3, 24)); // NOI18N
-        Distribuciones.setText("->DISTRIBUCION HAB.");
         Distribuciones.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 DistribucionesMouseReleased(evt);
             }
         });
-        getContentPane().add(Distribuciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 290, 40));
+        getContentPane().add(Distribuciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 150, 190));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 150, 180));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/consulta y check in (1).png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
         pack();
