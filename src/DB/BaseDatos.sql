@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2021 a las 18:43:43
+-- Tiempo de generación: 14-06-2021 a las 19:27:29
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.5
 
@@ -57,17 +57,19 @@ CREATE TABLE `customers` (
   `Correo` varchar(30) DEFAULT NULL,
   `MetodoP` varchar(40) DEFAULT NULL,
   `NumH` int(2) NOT NULL,
-  `Sexo` varchar(10) NOT NULL
+  `Sexo` varchar(10) NOT NULL,
+  `CiudaddeOrigen` varchar(50) DEFAULT NULL,
+  `dias` int(3) DEFAULT NULL,
+  `Tpersonas` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `customers`
 --
 
-INSERT INTO `customers` (`Nombre`, `NumTel`, `Correo`, `MetodoP`, `NumH`, `Sexo`) VALUES
-('Pepe', '4492391023', 'jaja@hotmail.com', 'Efectivo', 211, 'Masculino'),
-('Piesas', '4493463324', 'piesas@gmail.com', 'Efectivo', 811, 'Masculino'),
-('Jairo', '4493463325', 'xjlopz10@gmail.com', 'Paypal', 911, 'Masculino');
+INSERT INTO `customers` (`Nombre`, `NumTel`, `Correo`, `MetodoP`, `NumH`, `Sexo`, `CiudaddeOrigen`, `dias`, `Tpersonas`) VALUES
+('Amanda', '4495392902', 'amanda@gmail.com', 'efectivo', 191, 'Femenino', 'Aguascalientes', 7, 4),
+('Hayyim', '44990392012', 'hayyim@hotmail.com', 'efectivo', 911, 'Masculino', 'Aguascalientes', 2, 3);
 
 -- --------------------------------------------------------
 
@@ -122,15 +124,15 @@ INSERT INTO `habitacion` (`THab`, `FInic`, `Cupo`, `NumH`, `Piso`) VALUES
 (1, NULL, 0, 151, 1),
 (1, NULL, 0, 161, 2),
 (2, NULL, 0, 181, 2),
-(2, NULL, 0, 191, 2),
+(2, '2021-06-04', 1, 191, 2),
 (3, NULL, 0, 201, 2),
-(2, '2021-06-02', 1, 211, 2),
-(3, '2021-06-02', 1, 211, 2),
 (1, NULL, 0, 212, 1),
 (1, NULL, 0, 221, 2),
+(2, NULL, 0, 224, 2),
 (1, NULL, 0, 231, 2),
 (1, NULL, 0, 241, 2),
 (1, NULL, 0, 251, 2),
+(2, NULL, 0, 257, 2),
 (1, NULL, 0, 261, 2),
 (1, NULL, 0, 271, 2),
 (1, NULL, 0, 281, 2),
@@ -141,8 +143,8 @@ INSERT INTO `habitacion` (`THab`, `FInic`, `Cupo`, `NumH`, `Piso`) VALUES
 (2, NULL, 0, 511, 1),
 (2, NULL, 0, 611, 1),
 (1, NULL, 0, 711, 1),
-(3, '2021-06-11', 1, 811, 1),
-(1, '2021-06-11', 1, 911, 1);
+(3, NULL, 0, 811, 1),
+(1, '2021-06-04', 1, 911, 1);
 
 -- --------------------------------------------------------
 

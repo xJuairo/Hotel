@@ -31,6 +31,7 @@ public class Consultas extends javax.swing.JFrame {
     
     public Consultas() {
         initComponents();
+        this.setSize(700,560);
         Reservar.setEnabled(false);
         Tabla.setModel(modelo);
         modelo.addColumn("Numero de Habitacion");
@@ -82,6 +83,9 @@ public class Consultas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -163,6 +167,24 @@ public class Consultas extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
 
+        jMenu1.setText("CHECK IN/CONSULTA");
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("DISTRIBUCION DE HABITACIONES");
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -195,6 +217,7 @@ public class Consultas extends javax.swing.JFrame {
                 Imagen.getHeight(), Image.SCALE_SMOOTH);;
             ImageIcon ii = new ImageIcon(l);
             Imagen.setIcon(ii);
+            datos= weas;
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error");
         }
@@ -207,7 +230,7 @@ public class Consultas extends javax.swing.JFrame {
         dob = Date_Format.format(Fecha.getDate());
         this.setVisible(false);
         Altas altas = new Altas(dob,datos[0]);
-        altas.setSize(700,500);
+        altas.setSize(710,530);
         altas.setLocationRelativeTo(null);
         altas.setVisible(true);
     }//GEN-LAST:event_ReservarActionPerformed
@@ -242,6 +265,18 @@ public class Consultas extends javax.swing.JFrame {
         ui.setResizable(false);
         ui.setLocationRelativeTo(null);
     }//GEN-LAST:event_RegresarMouseReleased
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+       Consultas UI=new Consultas();
+       this.setVisible(false);
+       UI.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+       Piso1 UI=new Piso1();
+       this.setVisible(false);
+       UI.setVisible(true);
+    }//GEN-LAST:event_jMenu2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -288,6 +323,9 @@ public class Consultas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
