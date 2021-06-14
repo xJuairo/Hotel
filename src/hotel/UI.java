@@ -128,7 +128,7 @@ public class UI extends javax.swing.JFrame {
         this.setVisible(false);
         consultas.setVisible(true);
         consultas.setLocationRelativeTo(null);
-        consultas.setSize(700,500);
+        consultas.setSize(700,560);
         consultas.setResizable(false);
     }//GEN-LAST:event_ConsultasMouseClicked
 
@@ -150,6 +150,7 @@ public class UI extends javax.swing.JFrame {
         Piso1 ui = new Piso1();
         this.setVisible(false);
         ui.setVisible(true);
+        
         
     }//GEN-LAST:event_DistribucionesMouseReleased
 

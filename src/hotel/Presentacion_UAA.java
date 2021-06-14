@@ -151,24 +151,6 @@ public class Presentacion_UAA extends javax.swing.JFrame {
 @Override
      public void paint (Graphics g)
     {
-        super.paint(g);
-        int fila = 0;
-        for (int azul = 0 ; azul <= 255 ; azul++)
-        {
-            Color color1 = new Color (azul, azul, azul);
-            g.setColor (color1);
-            g.drawLine (0, fila, 800, fila);
-            fila++;
-        }
-          for (int azul = 255 ; azul >= 0 ; azul--)
-        {
-            Color color2 = new Color (azul, azul, azul);
-            g.setColor(color2);
-            g.drawLine (0, fila, 800, fila);
-            fila++;
-        }
-          
-        
         Image imagen = new ImageIcon(this.getClass().getResource("/Imagenes/BUAALOGO.png")).getImage();
         g.drawImage (imagen,100, 20 , this);
         
