@@ -63,6 +63,7 @@ public class ConsultasAp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton10 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         NumH = new javax.swing.JTextField();
@@ -81,6 +82,14 @@ public class ConsultasAp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jButton10.setText("Mostrar Recepcionistas");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 370, -1));
 
         jButton9.setText("Regresar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
@@ -426,6 +435,20 @@ public class ConsultasAp extends javax.swing.JFrame {
         ui.setLocationRelativeTo(null);        
     }//GEN-LAST:event_jButton9ActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        String usuarios = "";
+        try{
+            st = cn.createStatement();
+            rs = st.executeQuery("SELECT Usr FROM credenciales WHERE Usr!='root'");
+            while(rs.next()){
+                usuarios += rs.getString(1) + " ";
+            }
+            JOptionPane.showMessageDialog(null, "Recepcionistas : "+usuarios);
+        }catch(SQLException e){
+            
+        }
+    }//GEN-LAST:event_jButton10ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -467,6 +490,7 @@ public class ConsultasAp extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> Piso;
     private javax.swing.JTable Tabla;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
