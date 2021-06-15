@@ -5,12 +5,33 @@
  */
 package hotel;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.awt.GraphicsEnvironment;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDFont;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 
 /**
  *
@@ -18,11 +39,17 @@ import javax.swing.JOptionPane;
  */
 public class Bajas extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Bajas
-     */
     Conexion cc= new Conexion();
     Connection cn = cc.conexion();
+    int dias;
+    int presio;
+    int costoHab;
+    int TPersonas;
+    int MaxPer;
+    int presioSin;
+    String Finic;
+    String THab;
+    String cargos = "";
     PreparedStatement ps;
     Statement st;
     ResultSet rs;
@@ -34,9 +61,65 @@ public class Bajas extends javax.swing.JFrame {
             while(rs.next()){
                 Habitacion.addItem(rs.getString(1));
             }
+            st = cn.createStatement();
+            rs = st.executeQuery("SELECT dineros FROM info");
+            while(rs.next()){
+                presio = rs.getInt(1);
+            }
         }catch(SQLException e){
             
         }
+        try {
+            Font font = Font.createFont(Font.TRUETYPE_FONT, new File(this.getClass().getResource("/Fuentes/SFProDisplay-Bold.ttf").getFile())).deriveFont(20f);
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            ge.registerFont(font);
+            jLabel2.setFont(font);
+            jLabel3.setFont(font);
+            jLabel4.setFont(font);
+            jLabel5.setFont(font);
+            jLabel6.setFont(font);
+            Nombre.setFont(font);
+            NumTel.setFont(font);
+            Sexo.setFont(font);
+            Correo.setFont(font);
+            MetodoP.setFont(font);
+            try{
+                st = cn.createStatement();
+                rs = st.executeQuery("SELECT Nombre,NumTel,Correo,MetodoP,Sexo,CiudaddeOrigen,dias FROM customers WHERE NumH = "+(String)Habitacion.getSelectedItem());
+                while(rs.next()){
+                    Nombre.setText(rs.getString(1));
+                    NumTel.setText(rs.getString(2));
+                    Correo.setText(rs.getString(3));
+                    MetodoP.setText(rs.getString(4));
+                    Sexo.setText(rs.getString(5));
+                    Ciudad.setText(rs.getString(6));
+                    Dias.setText(rs.getString(7));
+                }
+            }catch(SQLException e){
+                
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch(FontFormatException e) {
+            e.printStackTrace();
+        }
+            Habitacion.addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent arg0) {
+                    try {
+                        st = cn.createStatement();
+                        rs = st.executeQuery("SELECT Nombre,NumTel,Correo,MetodoP,Sexo FROM customers WHERE NumH = " + (String) Habitacion.getSelectedItem());
+                        while (rs.next()) {
+                            Nombre.setText(rs.getString(1));
+                            NumTel.setText(rs.getString(2));
+                            Correo.setText(rs.getString(3));
+                            MetodoP.setText(rs.getString(4));
+                            Sexo.setText(rs.getString(5));
+                        }
+                    } catch (SQLException e) {
+
+                    }
+                }
+            });
     }
 
     /**
@@ -48,15 +131,44 @@ public class Bajas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Servicios = new javax.swing.ButtonGroup();
         Habitacion = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         Baja = new javax.swing.JButton();
+        ServNinera = new javax.swing.JRadioButton();
+        ServSPA = new javax.swing.JRadioButton();
+        ServTint = new javax.swing.JRadioButton();
+        ServBar = new javax.swing.JRadioButton();
+        ServCuarto = new javax.swing.JRadioButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         Regresar = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        Dias = new javax.swing.JButton();
+        Ciudad = new javax.swing.JButton();
+        MetodoP = new javax.swing.JButton();
+        Sexo = new javax.swing.JButton();
+        Correo = new javax.swing.JButton();
+        NumTel = new javax.swing.JButton();
+        Nombre = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        getContentPane().add(Habitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 80, -1));
+        getContentPane().add(Habitacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 80, -1));
+
+        jButton1.setText("Generar PDF");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 120, -1));
 
         Baja.setText("Dar de baja");
         Baja.addActionListener(new java.awt.event.ActionListener() {
@@ -64,15 +176,58 @@ public class Bajas extends javax.swing.JFrame {
                 BajaActionPerformed(evt);
             }
         });
-        getContentPane().add(Baja, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 290, 120, -1));
+        getContentPane().add(Baja, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 120, -1));
 
-        Regresar.setText("Regresar");
+        ServNinera.setText("Servicio de niñera");
+        getContentPane().add(ServNinera, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 130, -1));
+
+        ServSPA.setText("Servicio de SPA");
+        getContentPane().add(ServSPA, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, 130, -1));
+
+        ServTint.setText("Servicio de tintoreria");
+        getContentPane().add(ServTint, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 380, 130, -1));
+
+        ServBar.setText("Servicio de bar");
+        getContentPane().add(ServBar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 350, 130, -1));
+
+        ServCuarto.setText("Servicio al cuarto");
+        getContentPane().add(ServCuarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 130, -1));
+
+        jLabel8.setText("Dias");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 90, 30));
+
+        jLabel7.setText("Ciudad Origen");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 90, 30));
+
+        jLabel6.setText("MetodoP");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 90, 30));
+
+        jLabel5.setText("Sexo");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, 90, 30));
+
+        jLabel3.setText("Numero de Tel");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, 90, 30));
+
+        Regresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Salir.png"))); // NOI18N
         Regresar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 RegresarMouseClicked(evt);
             }
         });
-        getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 390, 110, 70));
+        getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, 150, 70));
+
+        jLabel4.setText("Correo");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, 90, 30));
+
+        jLabel2.setText("Nombre");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 90, 30));
+        getContentPane().add(Dias, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 170, 30));
+        getContentPane().add(Ciudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 170, 30));
+        getContentPane().add(MetodoP, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 170, 30));
+        getContentPane().add(Sexo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 170, 30));
+        getContentPane().add(Correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 110, 170, 30));
+        getContentPane().add(NumTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 170, 30));
+        getContentPane().add(Nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 170, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Back.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 500));
@@ -83,22 +238,177 @@ public class Bajas extends javax.swing.JFrame {
     private void BajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BajaActionPerformed
         String numh = (String)Habitacion.getSelectedItem();
         try{
+            st = cn.createStatement();
+            rs = st.executeQuery("SELECT THab,FInic FROM habitacion WHERE NumH = "+numh);
+            while(rs.next()){
+                THab = rs.getString(1);
+                Finic = rs.getString(2);
+            }
+            st = cn.createStatement();
+            rs = st.executeQuery("SELECT dias FROM customers WHERE NumH = "+numh);
+            while(rs.next()){
+                dias = rs.getInt(1);
+            }
+            st = cn.createStatement();
+            rs = st.executeQuery("SELECT tipohab.Precio,customers.Tpersonas,tipohab.Personas from habitacion INNER JOIN tipohab ON habitacion.THab = tipohab.THab INNER JOIN customers ON habitacion.NumH = customers.NumH WHERE habitacion.NumH = "+numh);
+            while(rs.next()){
+                costoHab = rs.getInt(1);
+                TPersonas = rs.getInt(2);
+                MaxPer = rs.getInt(3);
+            }
+            presio += (dias * costoHab);
+            presioSin = presio;
+            if(TPersonas > MaxPer){
+                int resta = TPersonas - MaxPer;
+                presio += resta * (500 * dias);
+            }
+            if(ServBar.isSelected()){
+                presio += 300;
+                cargos += "Bar ";
+            }
+            if(ServCuarto.isSelected()){
+                presio += 400;
+                cargos += " Servicio al cuarto ";
+            }
+            if(ServNinera.isSelected()){
+                presio += 2500;
+                if(cargos.length()<22)
+                    cargos += " Niñera ";
+                else
+                    cargos+="...";
+            }
+            if(ServSPA.isSelected()){
+                presio += 1500;
+                if(cargos.charAt(cargos.length()-1)!='.')
+                    cargos += " SPA ";
+            }
+            if(ServTint.isSelected()){
+                presio += 250;
+                if(cargos.charAt(cargos.length()-1)!='.')
+                    cargos += " Tintoreria ";
+            }            
             ps = cn.prepareStatement("DELETE FROM customers WHERE NumH = "+numh);
             ps.executeUpdate();
-            ps = cn.prepareStatement("UPDATE habitacion SET Cupo=0,FInic=null WHERE NumH = "+Habitacion.getSelectedItem());
+            ps = cn.prepareStatement("UPDATE habitacion SET Cupo=0,FInic=null WHERE NumH = "+numh);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro eliminado");
         }catch(SQLException e){
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "Error");
         }
-        UI ui = new UI();
-        this.setVisible(false);
-        ui.setVisible(true);
-        ui.setSize(700, 500);
-        ui.setResizable(false);
-        ui.setLocationRelativeTo(null);
     }//GEN-LAST:event_BajaActionPerformed
-
+    
+    String fechaSalida(){
+        SimpleDateFormat Date_Format = new SimpleDateFormat("yyyy-MM-dd"); 
+        int dias1 = Integer.parseInt(Dias.getText());
+        String dob="";
+        Date fecha;
+        try {
+            fecha = Date_Format.parse(Finic);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(fecha); 
+            calendar.add(Calendar.DAY_OF_YEAR, dias1);
+            dob = ""+calendar.getTime();
+            dob = Date_Format.format(calendar.getTime());
+        } catch (ParseException ex) {
+            Logger.getLogger(Altas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return dob;
+    }
+    void generarPDF(){
+        PDDocument document = new PDDocument();
+        PDPage Page = new PDPage();
+        document.addPage(Page);
+        PDFont font = PDType1Font.HELVETICA_BOLD;
+        try {
+            PDPageContentStream contentStream = new PDPageContentStream(document, Page);
+            PDImageXObject image = PDImageXObject.createFromFile(this.getClass().getResource("/Imagenes/Logo.png").getPath(), document);
+            contentStream.drawImage(image, 0, 650, 100, 100);
+            PDImageXObject firma = PDImageXObject.createFromFile(this.getClass().getResource("/Imagenes/firma.png").getPath(), document);
+            contentStream.drawImage(firma, 200, 20, 200, 100);
+            contentStream.beginText();
+            contentStream.setFont(font, 72);
+            contentStream.moveTextPositionByAmount(120, 700);//606 MAX - X axis
+            contentStream.drawString("Hotel JESA");
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 40);
+            contentStream.moveTextPositionByAmount(140, 630);//606 MAX - X axis
+            contentStream.drawString("Asegura tu verano");
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 590);//606 MAX - X axis
+            contentStream.drawString("Punta Diamante, Acapulco, Guerrero, Mexico");
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            DateTimeFormatter dtf5 = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm");
+            contentStream.moveTextPositionByAmount(100, 560);//606 MAX - X axis
+            contentStream.drawString(dtf5.format(LocalDateTime.now()));
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 530);//606 MAX - X axis
+            contentStream.drawString("Huesped: " + Nombre.getText());
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 500);//606 MAX - X axis
+            contentStream.drawString("Ciudad Origen: " + Ciudad.getText());
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 470);//606 MAX - X axis
+            contentStream.drawString("Fecha de Ingreso: " + Finic);
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 440);//606 MAX - X axis
+            contentStream.drawString("Fecha de salida: " +fechaSalida());
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 410);//606 MAX - X axis
+            contentStream.drawString("Tipo de Habitacion: " + THab);
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 380);//606 MAX - X axis
+            contentStream.drawString("Costo de Habitacion: " + costoHab);
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 350);//606 MAX - X axis
+            contentStream.drawString("Dias que se quedo en el Hotel: " + Dias.getText());
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 320);//606 MAX - X axis
+            contentStream.drawString("Total sin cargos extra: " + presioSin);
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 290);//606 MAX - X axis
+            contentStream.drawString("Total con cargos extra: " + presio);
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 260);//606 MAX - X axis
+            contentStream.drawString("Lista de cargos extra: " + cargos);
+            contentStream.endText();
+            contentStream.beginText();
+            contentStream.setFont(font, 20);
+            contentStream.moveTextPositionByAmount(100, 230);//606 MAX - X axis
+            contentStream.drawString("Vuelva pronto");
+            contentStream.endText();
+            contentStream.close();
+            document.save("Recibo.pdf");
+            document.close();
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+    }
+    
     private void RegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_RegresarMouseClicked
         UI ui = new UI();
         this.setVisible(false);
@@ -107,6 +417,10 @@ public class Bajas extends javax.swing.JFrame {
         ui.setResizable(false);
         ui.setLocationRelativeTo(null);
     }//GEN-LAST:event_RegresarMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        generarPDF();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,8 +459,29 @@ public class Bajas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Baja;
+    private javax.swing.JButton Ciudad;
+    private javax.swing.JButton Correo;
+    private javax.swing.JButton Dias;
     private javax.swing.JComboBox<String> Habitacion;
+    private javax.swing.JButton MetodoP;
+    private javax.swing.JButton Nombre;
+    private javax.swing.JButton NumTel;
     private javax.swing.JLabel Regresar;
+    private javax.swing.JRadioButton ServBar;
+    private javax.swing.JRadioButton ServCuarto;
+    private javax.swing.JRadioButton ServNinera;
+    private javax.swing.JRadioButton ServSPA;
+    private javax.swing.JRadioButton ServTint;
+    private javax.swing.ButtonGroup Servicios;
+    private javax.swing.JButton Sexo;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     // End of variables declaration//GEN-END:variables
 }

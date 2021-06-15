@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2021 a las 18:43:43
--- Versión del servidor: 10.4.18-MariaDB
--- Versión de PHP: 8.0.5
+-- Host: 127.0.0.1
+-- Generation Time: Jun 15, 2021 at 03:42 AM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `hotel`
+-- Database: `hotel`
 --
 DROP DATABASE IF EXISTS `hotel`;
 CREATE DATABASE IF NOT EXISTS `hotel` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
@@ -27,7 +27,7 @@ USE `hotel`;
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `credenciales`
+-- Table structure for table `credenciales`
 --
 
 CREATE TABLE `credenciales` (
@@ -36,7 +36,7 @@ CREATE TABLE `credenciales` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `credenciales`
+-- Dumping data for table `credenciales`
 --
 
 INSERT INTO `credenciales` (`Usr`, `Pass`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `credenciales` (`Usr`, `Pass`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `customers`
+-- Table structure for table `customers`
 --
 
 CREATE TABLE `customers` (
@@ -57,22 +57,16 @@ CREATE TABLE `customers` (
   `Correo` varchar(30) DEFAULT NULL,
   `MetodoP` varchar(40) DEFAULT NULL,
   `NumH` int(2) NOT NULL,
-  `Sexo` varchar(10) NOT NULL
+  `Sexo` varchar(10) NOT NULL,
+  `CiudaddeOrigen` varchar(50) DEFAULT NULL,
+  `dias` int(3) DEFAULT NULL,
+  `Tpersonas` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `customers`
---
-
-INSERT INTO `customers` (`Nombre`, `NumTel`, `Correo`, `MetodoP`, `NumH`, `Sexo`) VALUES
-('Pepe', '4492391023', 'jaja@hotmail.com', 'Efectivo', 211, 'Masculino'),
-('Piesas', '4493463324', 'piesas@gmail.com', 'Efectivo', 811, 'Masculino'),
-('Jairo', '4493463325', 'xjlopz10@gmail.com', 'Paypal', 911, 'Masculino');
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `galeria`
+-- Table structure for table `galeria`
 --
 
 CREATE TABLE `galeria` (
@@ -81,7 +75,7 @@ CREATE TABLE `galeria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `galeria`
+-- Dumping data for table `galeria`
 --
 
 INSERT INTO `galeria` (`RutaImagen`, `Id`) VALUES
@@ -97,7 +91,7 @@ INSERT INTO `galeria` (`RutaImagen`, `Id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `habitacion`
+-- Table structure for table `habitacion`
 --
 
 CREATE TABLE `habitacion` (
@@ -109,7 +103,7 @@ CREATE TABLE `habitacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `habitacion`
+-- Dumping data for table `habitacion`
 --
 
 INSERT INTO `habitacion` (`THab`, `FInic`, `Cupo`, `NumH`, `Piso`) VALUES
@@ -124,13 +118,13 @@ INSERT INTO `habitacion` (`THab`, `FInic`, `Cupo`, `NumH`, `Piso`) VALUES
 (2, NULL, 0, 181, 2),
 (2, NULL, 0, 191, 2),
 (3, NULL, 0, 201, 2),
-(2, '2021-06-02', 1, 211, 2),
-(3, '2021-06-02', 1, 211, 2),
 (1, NULL, 0, 212, 1),
 (1, NULL, 0, 221, 2),
+(2, NULL, 0, 224, 2),
 (1, NULL, 0, 231, 2),
 (1, NULL, 0, 241, 2),
 (1, NULL, 0, 251, 2),
+(2, NULL, 0, 257, 2),
 (1, NULL, 0, 261, 2),
 (1, NULL, 0, 271, 2),
 (1, NULL, 0, 281, 2),
@@ -141,13 +135,13 @@ INSERT INTO `habitacion` (`THab`, `FInic`, `Cupo`, `NumH`, `Piso`) VALUES
 (2, NULL, 0, 511, 1),
 (2, NULL, 0, 611, 1),
 (1, NULL, 0, 711, 1),
-(3, '2021-06-11', 1, 811, 1),
-(1, '2021-06-11', 1, 911, 1);
+(3, NULL, 0, 811, 1),
+(1, NULL, 0, 911, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `info`
+-- Table structure for table `info`
 --
 
 CREATE TABLE `info` (
@@ -155,20 +149,21 @@ CREATE TABLE `info` (
   `TipoHotel` varchar(20) DEFAULT NULL,
   `Lema` varchar(20) DEFAULT NULL,
   `Logotipo` varchar(20) DEFAULT NULL,
-  `Ubicacion` varchar(50) DEFAULT NULL
+  `Ubicacion` varchar(50) DEFAULT NULL,
+  `dineros` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `info`
+-- Dumping data for table `info`
 --
 
-INSERT INTO `info` (`Nombre`, `TipoHotel`, `Lema`, `Logotipo`, `Ubicacion`) VALUES
-('Hotel', '5 Estrellas', 'Tu hotel ideal', 'Logotipo.png', 'Mexico, Guerrero, Acapulco');
+INSERT INTO `info` (`Nombre`, `TipoHotel`, `Lema`, `Logotipo`, `Ubicacion`, `dineros`) VALUES
+('Hotel', '5 Estrellas', 'Tu hotel ideal', 'Logotipo.png', 'Mexico, Guerrero, Acapulco', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tipohab`
+-- Table structure for table `tipohab`
 --
 
 CREATE TABLE `tipohab` (
@@ -180,7 +175,7 @@ CREATE TABLE `tipohab` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Volcado de datos para la tabla `tipohab`
+-- Dumping data for table `tipohab`
 --
 
 INSERT INTO `tipohab` (`Precio`, `THab`, `nombre`, `Personas`, `Ruta`) VALUES
@@ -189,29 +184,29 @@ INSERT INTO `tipohab` (`Precio`, `THab`, `nombre`, `Personas`, `Ruta`) VALUES
 (3000, 3, 'Triple', 3, 'H7.jpg');
 
 --
--- Índices para tablas volcadas
+-- Indexes for dumped tables
 --
 
 --
--- Indices de la tabla `customers`
+-- Indexes for table `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`NumH`);
 
 --
--- Indices de la tabla `galeria`
+-- Indexes for table `galeria`
 --
 ALTER TABLE `galeria`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Indices de la tabla `habitacion`
+-- Indexes for table `habitacion`
 --
 ALTER TABLE `habitacion`
   ADD PRIMARY KEY (`NumH`,`THab`);
 
 --
--- Indices de la tabla `tipohab`
+-- Indexes for table `tipohab`
 --
 ALTER TABLE `tipohab`
   ADD PRIMARY KEY (`THab`);

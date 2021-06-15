@@ -61,9 +61,6 @@ public class Recibo extends javax.swing.JFrame {
                    this.piso.setText(rs.getString(3));
                 }
             }
-          
-         
-         
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error");
         }
@@ -333,7 +330,7 @@ public class Recibo extends javax.swing.JFrame {
             this.jCheckBox1.isSelected();
             this.jCheckBox1.setSelected(true);
             this.jCheckBox2.setVisible(false);
-        }else{
+        }if(res==2){
             this.jCheckBox2.isSelected();
             this.jCheckBox2.setSelected(true);
             this.jCheckBox1.setVisible(false);

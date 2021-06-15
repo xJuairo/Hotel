@@ -55,16 +55,13 @@ public class Altas extends javax.swing.JFrame {
             }
             Habitaciones.addItemListener(new ItemListener() {
                 public void itemStateChanged(ItemEvent arg0) {
-                    for(HAB Htaciones:thab){
-                         if(Htaciones.getNUMHAB() == Integer.parseInt((String) Habitaciones.getSelectedItem())){
-                          Thab.setText(Htaciones.getTipo());
-                          limtepersonas=Htaciones.getTHABENT();
+                    for (HAB Htaciones : thab) {
+                        if (Htaciones.getNUMHAB() == Integer.parseInt((String) Habitaciones.getSelectedItem())) {
+                            Thab.setText(Htaciones.getTipo());
+                            limtepersonas = Htaciones.getTHABENT();
                         }
-                        
                     }
-                 
-
-                    }
+                }
             });
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error");

@@ -8,6 +8,9 @@ package hotel;
 import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.Point;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 /**
  *
@@ -21,6 +24,8 @@ public class UI extends javax.swing.JFrame {
     
     public UI() {
         initComponents();
+        this.setSize(700,500);
+        this.setLocationRelativeTo(null);
     }
     
 
@@ -93,6 +98,12 @@ public class UI extends javax.swing.JFrame {
             }
         });
         getContentPane().add(Distribuciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 150, 190));
+
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, 150, 180));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/consulta y check in (1).png"))); // NOI18N
@@ -130,10 +141,14 @@ public class UI extends javax.swing.JFrame {
     }//GEN-LAST:event_ModUsrsMouseReleased
 
     private void GaleriaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_GaleriaMouseReleased
-        Galeria consultas = new Galeria();
-        this.setVisible(false);
-        consultas.setVisible(true);
-        consultas.setResizable(false);
+        try {
+            Galeria consultas = new Galeria();
+            this.setVisible(false);
+            consultas.setVisible(true);
+            consultas.setResizable(false);
+        } catch (BasicPlayerException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_GaleriaMouseReleased
 
     private void DistribucionesMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DistribucionesMouseReleased
@@ -143,6 +158,13 @@ public class UI extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_DistribucionesMouseReleased
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        ConsultasAp consultas = new ConsultasAp();
+        this.setVisible(false);
+        consultas.setVisible(true);
+        consultas.setResizable(false);
+    }//GEN-LAST:event_jLabel2MouseClicked
 
     /**
      * @param args the command line arguments

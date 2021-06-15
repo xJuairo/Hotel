@@ -39,7 +39,6 @@ public class ModificarUsuarios extends javax.swing.JFrame {
             while(rs.next()){
                 CustomerHab.addItem(rs.getString(1));
                 Lista.add(new customers(rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getInt(1),rs.getString(6)));
-                
             }
             Nombre.setText(Lista.get(0).getNombre());
             NumTel.setText(Lista.get(0).getNumTel());

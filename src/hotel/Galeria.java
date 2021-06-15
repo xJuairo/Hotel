@@ -10,8 +10,11 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 /**
  *
@@ -26,7 +29,9 @@ public class Galeria extends javax.swing.JFrame {
     Connection cn = cc.conexion();
     int max=0;
     int cont=1;
-    public Galeria() {
+    ReproducirSonidoSystem rp = new ReproducirSonidoSystem();
+    public Galeria() throws BasicPlayerException {
+        rp.reproducir();
         initComponents();
         this.setSize(1280,720);
         this.setLocationRelativeTo(null);
@@ -45,7 +50,8 @@ public class Galeria extends javax.swing.JFrame {
                 cad=RS.getString(1);
                 
             }
-            Image i = new ImageIcon(this.getClass().getResource("/Imagenes/"+cad)).getImage();
+            Image i = new ImageIcon(this.getClass().getResource("/Imagenes/"+cad)).getImage().getScaledInstance(jLabel1.getWidth(),
+                jLabel1.getHeight(), Image.SCALE_SMOOTH);;
             ImageIcon II=new ImageIcon(i);
             jLabel1.setIcon(II);
         
@@ -66,14 +72,24 @@ public class Galeria extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         Regresar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 10, 990, 690));
+
+        jButton3.setText("Detener Sonido");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 120, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, 860, 510));
 
         jButton1.setText("SIGUIENTE");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +115,9 @@ public class Galeria extends javax.swing.JFrame {
         });
         getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 130, 80, 30));
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/FondoPisos.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 720));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -117,7 +136,8 @@ public class Galeria extends javax.swing.JFrame {
                 cad=RS.getString(1);
                 
             }
-            Image i = new ImageIcon(this.getClass().getResource("/Imagenes/"+cad)).getImage();
+            Image i = new ImageIcon(this.getClass().getResource("/Imagenes/"+cad)).getImage().getScaledInstance(jLabel1.getWidth(),
+                jLabel1.getHeight(), Image.SCALE_SMOOTH);;
             ImageIcon II=new ImageIcon(i);
             jLabel1.setIcon(II);
         
@@ -142,7 +162,8 @@ public class Galeria extends javax.swing.JFrame {
                 cad=RS.getString(1);
                 
             }
-            Image i = new ImageIcon(this.getClass().getResource("/Imagenes/"+cad)).getImage();
+            Image i = new ImageIcon(this.getClass().getResource("/Imagenes/"+cad)).getImage().getScaledInstance(jLabel1.getWidth(),
+                jLabel1.getHeight(), Image.SCALE_SMOOTH);;
             ImageIcon II=new ImageIcon(i);
             jLabel1.setIcon(II);
         
@@ -160,6 +181,14 @@ public class Galeria extends javax.swing.JFrame {
         ui.setResizable(false);
         ui.setLocationRelativeTo(null);
     }//GEN-LAST:event_RegresarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            rp.stop();
+        } catch (BasicPlayerException ex) {
+            Logger.getLogger(Galeria.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,7 +220,11 @@ public class Galeria extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Galeria().setVisible(true);
+                try {
+                    new Galeria().setVisible(true);
+                } catch (BasicPlayerException ex) {
+                    Logger.getLogger(Galeria.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -200,6 +233,8 @@ public class Galeria extends javax.swing.JFrame {
     private javax.swing.JButton Regresar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

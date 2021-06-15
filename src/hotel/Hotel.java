@@ -5,7 +5,6 @@
  */
 package hotel;
 
-import java.awt.Color;
 import javazoom.jlgui.basicplayer.BasicPlayerException;
 
 /**
@@ -15,7 +14,7 @@ import javazoom.jlgui.basicplayer.BasicPlayerException;
 public class Hotel {
 //Iniciamos el login de usuarios
     public static void main(String[] args) throws BasicPlayerException {
-       Presentacion_UAA obj=new Presentacion_UAA();
-        }
+        Presentacion_UAA obj=new Presentacion_UAA();
+    }
         
-    } 
+} 

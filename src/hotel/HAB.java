@@ -12,6 +12,10 @@ public class HAB {
         this.Tipo = Tipo;
         this.THABENT=THABENT;
     }
+    public HAB(int nh, int thab){
+        NUMHAB = nh;
+        THABENT = thab;
+    }
 
     HAB() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
