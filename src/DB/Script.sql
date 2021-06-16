@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 15, 2021 at 03:42 AM
--- Server version: 10.4.14-MariaDB
--- PHP Version: 7.2.34
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 16-06-2021 a las 01:38:41
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hotel`
+-- Base de datos: `hotel`
 --
 DROP DATABASE IF EXISTS `hotel`;
 CREATE DATABASE IF NOT EXISTS `hotel` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
@@ -27,7 +27,7 @@ USE `hotel`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `credenciales`
+-- Estructura de tabla para la tabla `credenciales`
 --
 
 CREATE TABLE `credenciales` (
@@ -36,19 +36,20 @@ CREATE TABLE `credenciales` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `credenciales`
+-- Volcado de datos para la tabla `credenciales`
 --
 
 INSERT INTO `credenciales` (`Usr`, `Pass`) VALUES
 ('root', '21232f297a57a5a743894a0e4a801fc3'),
 ('xJuairo', 'e10adc3949ba59abbe56e057f20f883e'),
 ('Sebai', 'e10adc3949ba59abbe56e057f20f883e'),
-('sergio', '619ac44a2da678e8a7fc0e776250df6c');
+('sergio', '619ac44a2da678e8a7fc0e776250df6c'),
+('Aram', 'e10adc3949ba59abbe56e057f20f883e');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customers`
+-- Estructura de tabla para la tabla `customers`
 --
 
 CREATE TABLE `customers` (
@@ -63,10 +64,26 @@ CREATE TABLE `customers` (
   `Tpersonas` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Volcado de datos para la tabla `customers`
+--
+
+INSERT INTO `customers` (`Nombre`, `NumTel`, `Correo`, `MetodoP`, `NumH`, `Sexo`, `CiudaddeOrigen`, `dias`, `Tpersonas`) VALUES
+('Juan', '4491234567', 'juanperez@hotmail.com', 'Tarjeta', 101, 'Masculino', 'Aguascalientes', 5, 1),
+('Javier ', '4499876543', 'JavierLopez@hotmail.com', 'Efectivo', 111, 'Masculino', 'Tamaulipas', 6, 1),
+('Miriam Juarez', '4497628462', 'miriamjuarez@hotmail.com', 'Tarjeta', 112, 'Femenino', 'Ciudad Juarez', 4, 1),
+('Aram Lopez', '4495628534', 'Aramlopez@hotmail.com', 'Efectivo', 121, 'Masculino', 'Guadalajara', 5, 1),
+('Anderson Armas', '4493333336', 'AndersonArmas@hotmail.com', 'Tarjeta', 131, 'Masculino', 'Chihuahua', 6, 1),
+('Gabriel Ochoa', '4492467356', 'GabrielOchoa@hotmail.com', 'Tarjeta', 141, 'Masculino', 'Sonora', 4, 1),
+('Jose Duarte', '4498835576', 'JoseDuarte@gmail.com ', 'Efectivo', 151, 'Masculino', 'Yucatan', 8, 1),
+('Erick Benitez', '4491334876', 'ErickBenitez@gmail.com', 'Tarjeta', 161, 'Masculino', 'Ixmiquilpan', 7, 1),
+('David Esparza', '4493784576', 'DavidEsparza@hotmail.com', 'Efectivo', 181, 'Masculino', 'Aguascalientes', 6, 2),
+('Vicente Juarez', '4495573456', 'VicenteJuarez@gmail.com', 'Tarjeta', 191, 'Masculino', 'Zacatecas', 5, 2);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `galeria`
+-- Estructura de tabla para la tabla `galeria`
 --
 
 CREATE TABLE `galeria` (
@@ -75,7 +92,7 @@ CREATE TABLE `galeria` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `galeria`
+-- Volcado de datos para la tabla `galeria`
 --
 
 INSERT INTO `galeria` (`RutaImagen`, `Id`) VALUES
@@ -91,7 +108,7 @@ INSERT INTO `galeria` (`RutaImagen`, `Id`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `habitacion`
+-- Estructura de tabla para la tabla `habitacion`
 --
 
 CREATE TABLE `habitacion` (
@@ -103,20 +120,20 @@ CREATE TABLE `habitacion` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `habitacion`
+-- Volcado de datos para la tabla `habitacion`
 --
 
 INSERT INTO `habitacion` (`THab`, `FInic`, `Cupo`, `NumH`, `Piso`) VALUES
-(1, NULL, 0, 101, 1),
-(1, NULL, 0, 111, 1),
-(1, NULL, 0, 112, 1),
-(1, NULL, 0, 121, 1),
-(1, NULL, 0, 131, 1),
-(1, NULL, 0, 141, 1),
-(1, NULL, 0, 151, 1),
-(1, NULL, 0, 161, 2),
-(2, NULL, 0, 181, 2),
-(2, NULL, 0, 191, 2),
+(1, '2021-06-16', 1, 101, 1),
+(1, '2021-06-16', 1, 111, 1),
+(1, '2021-06-16', 1, 112, 1),
+(1, '2021-06-16', 1, 121, 1),
+(1, '2021-06-16', 1, 131, 1),
+(1, '2021-06-16', 1, 141, 1),
+(1, '2021-06-16', 1, 151, 1),
+(1, '2021-06-16', 1, 161, 2),
+(2, '2021-06-16', 1, 181, 2),
+(2, '2021-06-16', 1, 191, 2),
 (3, NULL, 0, 201, 2),
 (1, NULL, 0, 212, 1),
 (1, NULL, 0, 221, 2),
@@ -141,7 +158,7 @@ INSERT INTO `habitacion` (`THab`, `FInic`, `Cupo`, `NumH`, `Piso`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `info`
+-- Estructura de tabla para la tabla `info`
 --
 
 CREATE TABLE `info` (
@@ -154,7 +171,7 @@ CREATE TABLE `info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `info`
+-- Volcado de datos para la tabla `info`
 --
 
 INSERT INTO `info` (`Nombre`, `TipoHotel`, `Lema`, `Logotipo`, `Ubicacion`, `dineros`) VALUES
@@ -163,7 +180,7 @@ INSERT INTO `info` (`Nombre`, `TipoHotel`, `Lema`, `Logotipo`, `Ubicacion`, `din
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tipohab`
+-- Estructura de tabla para la tabla `tipohab`
 --
 
 CREATE TABLE `tipohab` (
@@ -175,7 +192,7 @@ CREATE TABLE `tipohab` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `tipohab`
+-- Volcado de datos para la tabla `tipohab`
 --
 
 INSERT INTO `tipohab` (`Precio`, `THab`, `nombre`, `Personas`, `Ruta`) VALUES
@@ -184,29 +201,29 @@ INSERT INTO `tipohab` (`Precio`, `THab`, `nombre`, `Personas`, `Ruta`) VALUES
 (3000, 3, 'Triple', 3, 'H7.jpg');
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `customers`
+-- Indices de la tabla `customers`
 --
 ALTER TABLE `customers`
   ADD PRIMARY KEY (`NumH`);
 
 --
--- Indexes for table `galeria`
+-- Indices de la tabla `galeria`
 --
 ALTER TABLE `galeria`
   ADD PRIMARY KEY (`Id`);
 
 --
--- Indexes for table `habitacion`
+-- Indices de la tabla `habitacion`
 --
 ALTER TABLE `habitacion`
   ADD PRIMARY KEY (`NumH`,`THab`);
 
 --
--- Indexes for table `tipohab`
+-- Indices de la tabla `tipohab`
 --
 ALTER TABLE `tipohab`
   ADD PRIMARY KEY (`THab`);
