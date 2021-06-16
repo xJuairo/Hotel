@@ -291,6 +291,8 @@ public class Bajas extends javax.swing.JFrame {
             ps.executeUpdate();
             ps = cn.prepareStatement("UPDATE habitacion SET Cupo=0,FInic=null WHERE NumH = "+numh);
             ps.executeUpdate();
+            ps = cn.prepareStatement("UPDATE info SET dineros = "+presio+" WHERE Nombre = 'Hotel' ");
+            ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Registro eliminado");
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, "Error");

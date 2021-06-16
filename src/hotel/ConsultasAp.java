@@ -369,11 +369,14 @@ public class ConsultasAp extends javax.swing.JFrame {
         try{
             st = cn.createStatement();
             rs = st.executeQuery("SELECT customers.NumH,habitacion.Piso FROM customers INNER JOIN habitacion ON customers.NumH = habitacion.NumH WHERE customers.Nombre = '"+name+"'");
+            if(!rs.next()){
+                JOptionPane.showMessageDialog(null, "Cliente no registrado");
+            }
             while(rs.next()){
                 JOptionPane.showMessageDialog(null, name + " Habitacion : " + rs.getInt(1) + " Piso : "+ rs.getInt(2));
             }
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(null, "Cliente no registrado");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
