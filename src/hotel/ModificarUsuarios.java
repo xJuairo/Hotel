@@ -141,7 +141,7 @@ public class ModificarUsuarios extends javax.swing.JFrame {
         UI ui = new UI();
         this.setVisible(false);
         ui.setVisible(true);
-        ui.setSize(700, 500);
+        ui.setSize(750, 600);
         ui.setResizable(false);
         ui.setLocationRelativeTo(null);
     }//GEN-LAST:event_RegresarActionPerformed

@@ -90,6 +90,7 @@ public class PresentacionSystem extends javax.swing.JFrame {
             this.music.stop();
             this.setVisible(false);
             Login obj1=new Login();
+            
         } catch (BasicPlayerException ex) {
             Logger.getLogger(Presentacion_UAA.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -430,7 +430,6 @@ public class ConsultasAp extends javax.swing.JFrame {
         UI ui = new UI();
         this.setVisible(false);
         ui.setVisible(true);
-        ui.setSize(700, 500);
         ui.setResizable(false);
         ui.setLocationRelativeTo(null);        
     }//GEN-LAST:event_jButton9ActionPerformed

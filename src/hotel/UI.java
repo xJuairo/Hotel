@@ -24,7 +24,7 @@ public class UI extends javax.swing.JFrame {
     
     public UI() {
         initComponents();
-        this.setSize(700,500);
+        this.setSize(750,600);
         this.setLocationRelativeTo(null);
     }
     
@@ -155,8 +155,6 @@ public class UI extends javax.swing.JFrame {
         Piso1 ui = new Piso1();
         this.setVisible(false);
         ui.setVisible(true);
-        
-        
     }//GEN-LAST:event_DistribucionesMouseReleased
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked

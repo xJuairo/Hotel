@@ -172,7 +172,7 @@ public class Login extends javax.swing.JFrame {
                     UI interfaz = new UI();
                     interfaz.setLocationRelativeTo(null);
                     interfaz.setVisible(true);
-                    interfaz.setSize(700,500);
+                    interfaz.setSize(750,600);
                     this.setVisible(false);
                 }
             }else{
